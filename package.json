@@ -17,6 +17,7 @@
     "serve-favicon": "~2.2.0"
   },
   "devDependencies": {
-    "supervisor": "~0.7.1"
+    "supervisor": "~0.7.1",
+    "dupa": "~0.10.1"
   }
 }
