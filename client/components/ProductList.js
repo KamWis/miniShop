@@ -7,7 +7,7 @@ export default class ProductList extends React.Component {
 
     const productList = this.props.productsArray.map((product, index) => {
 
-            return <ProductTile key={index} productName={product.name} imgLink={product.link} />
+            return <ProductTile key={index} productName={product.name} imgLink={product.link} price={product.price} date={product.date} />
           });
 
     return (

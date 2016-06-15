@@ -42,9 +42,17 @@ export default class ProductTile extends React.Component {
           <img src={this.props.imgLink} />
         </div>
         <div className="width100" onClick={this.switchClass.bind(this)}>
-          <span className={this.state.secondary + ' ' + this.state.default}>
-            {this.props.productName}
-          </span>
+          <Col sm={9} className={this.state.secondary + ' ' + this.state.default}>
+            <div class="width100">
+              {this.props.productName}
+            </div>
+            <div class="width100">
+              {this.props.date}
+            </div>
+          </Col>
+          <Col sm={3}>
+            {this.props.price}
+          </Col>
         </div>
       </Col>
     )
