@@ -14,10 +14,10 @@ export default class GridSwitcher extends React.Component {
     };
   }
 
-  switchClasses(text){
-    if(text) {
+  switchClasses(icon){
+    if(icon) {
 
-      if(text === 'list' && this.classes.grid !== 'width80') {
+      if(icon === 'list' && this.classes.grid !== 'width80') {
 
         this.classes = {
             grid: 'width80',
@@ -26,7 +26,7 @@ export default class GridSwitcher extends React.Component {
           }
       }
 
-      if(text === 'grid' && this.classes.grid !== 'width100') {
+      if(icon === 'grid' && this.classes.grid !== 'width100') {
 
         this.classes = {
             grid: 'width100',
