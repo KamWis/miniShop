@@ -1,8 +1,9 @@
 import React from "react";
 import { Col, DropdownButton, MenuItem } from 'react-bootstrap';
 import SortBy from './SortBy';
+import GridSwitcher from './GridSwitcher';
 
-const TopToolbar = () => (
+const TopToolbar = ({getSwitcherClasses}) => (
 
   <Col sm={12} className="top-margin-40 nav-bar-top">
     <Col sm={6}>
@@ -15,10 +16,7 @@ const TopToolbar = () => (
       <SortBy />
     </Col>
     <Col sm={1}>
-      <div className="pull-right">
-        <i className="material-icons grid-icons">&#xE8EF;</i>
-        <i className="material-icons grid-icons">&#xE8F0;</i>
-      </div>
+      <GridSwitcher updateGridSwitcherHandler={getSwitcherClasses} />
     </Col>
   </Col>
 );
