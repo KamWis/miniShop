@@ -11,11 +11,11 @@ const TopToolbar = ({getSwitcherClasses}) => (
       <input className="input-top_search" type="text" placeholder="Search for product..." />
     </Col>
 
-    <Col sm={5}>
+    <Col sm={4} className="pull-left">
 
       <SortBy />
     </Col>
-    <Col sm={1}>
+    <Col sm={2} className="pull-left">
       <GridSwitcher updateGridSwitcherHandler={getSwitcherClasses} />
     </Col>
   </Col>
