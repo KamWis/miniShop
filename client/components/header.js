@@ -1,6 +1,7 @@
 import React from 'react';
 import Logo from './logo';
 import { Button, Col } from 'react-bootstrap';
+import {Link} from 'react-router';
 
 export default class Header extends React.Component {
   constructor() {
@@ -14,7 +15,9 @@ export default class Header extends React.Component {
           <Logo />
         </Col>
         <Col sm={6}>
-          <Button bsStyle="info" bsSize="large" className="pull-right btn-raised">Add new product</Button>
+          <Link to="AddNewProduct">
+            <Button bsStyle="info" bsSize="large" className="pull-right btn-raised">Add new product</Button>
+          </Link>
         </Col>
       </header>
     );
