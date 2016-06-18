@@ -9,36 +9,22 @@ export default class Container extends React.Component {
   constructor(props) {
     super(props);
 
-    this.getProducts = this.GetProducts.bind(this);
-    this.getClasses = this.updateGrid.bind(this);
+    this.forceUpdateFnc = this.ForceUpdateFnc.bind(this);
 
   }
 
   componentWillMount() {
-    miniShopStore.on('change', this.getProducts);
-    miniShopStore.on('change', this.getClasses);
+    miniShopStore.on('change', this.forceUpdateFnc);
   }
 
   componentWillUnmount() {
-    miniShopStore.removeListener('change', this.getProducts);
-    miniShopStore.removeListener('change', this.getClasses);
+
+    miniShopStore.removeListener('change', this.forceUpdateFnc);
   }
 
-  updateGrid() {
+  ForceUpdateFnc() {
 
-    this.setState({
-
-      grid: miniShopStore.getClasses().grid,
-      gridImage: miniShopStore.getClasses().gridImage,
-      tileWidth: miniShopStore.getClasses().tileWidth
-    })
-  }
-
-  GetProducts() {
-
-    this.setState({
-      productsArray: miniShopStore.getAll()
-    });
+    this.forceUpdate();
   }
 
   render() {
