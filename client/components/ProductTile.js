@@ -1,18 +1,25 @@
 import React from 'react';
 import {Col} from 'react-bootstrap';
+import miniShopStore from '../stores/miniShopStore';
 
 
 export default class ProductTile extends React.Component {
 
+  constructor() {
+    super();
+
+  }
   render() {
 
+    const classes = miniShopStore.getClasses();
+
     return (
-      <Col sm={this.props.tileWidth} className="single_tile">
-        <div className={"product_image--grid" + ' ' + this.props.gridImage}>
+      <Col sm={classes.tileWidth} className="single_tile">
+        <div className={"product_image--grid" + ' ' + classes.gridImage}>
 
           <img src={this.props.imgLink} />
         </div>
-        <div className={this.props.grid + ' product_data_row'}>
+        <div className={classes.grid + ' product_data_row'}>
           <Col xs={9}>
             <div className="width100 large_title">
               <h3 className="text-info">{this.props.productName}</h3>

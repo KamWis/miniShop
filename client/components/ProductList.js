@@ -1,12 +1,13 @@
 import React from 'react';
 import {Row, Col} from 'react-bootstrap';
 import ProductTile from './ProductTile';
+import miniShopStore from '../stores/miniShopStore';
 
 export default class ProductList extends React.Component {
 
   render() {
 
-    const productList = this.props.productsArray.map((product, index) => {
+    const productList = miniShopStore.getAll().map((product, index) => {
 
             return <ProductTile
                       key={index}
@@ -14,9 +15,6 @@ export default class ProductList extends React.Component {
                       imgLink={product.link}
                       price={product.price}
                       date={product.date}
-                      grid={this.props.changesClasses.grid}
-                      gridImage={this.props.changesClasses.gridImage}
-                      tileWidth={this.props.changesClasses.tileWidth}
                       />
           });
 

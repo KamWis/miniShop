@@ -1,17 +1,13 @@
 import React from 'react';
+import * as miniShopActions from '../actions/index';
+import miniShopStore from '../stores/miniShopStore';
 
 export default class GridSwitcher extends React.Component {
 
   constructor() {
     super();
 
-    this.classes = {
-
-      grid: 'width100',
-      gridImage: 'width100',
-      tileWidth: 6
-
-    };
+    this.classes = miniShopStore.getClasses()
   }
 
   switchClasses(icon){
@@ -35,13 +31,9 @@ export default class GridSwitcher extends React.Component {
           }
       }
 
-      const gridClasses = [
-          this.classes.grid,
-          this.classes.gridImage,
-          this.classes.tileWidth
-      ]
-
-      this.props.updateGridSwitcherHandler(this.classes);
+      miniShopActions.gridSwitcher(
+        this.classes
+      )
     }
   }
 

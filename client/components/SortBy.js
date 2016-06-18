@@ -1,6 +1,8 @@
 import React from "react";
 import { Col, DropdownButton, MenuItem } from 'react-bootstrap';
-import productsArray from '../tmpProductsArray';
+import miniShopStore from '../stores/miniShopStore';
+import * as miniShopActions from '../actions/index';
+
 
 export default class SortBy extends React.Component {
 
@@ -10,7 +12,7 @@ export default class SortBy extends React.Component {
 
     if(order === 'priceAsc' || order === 'dateAsc'){
 
-      newProdArray = productsArray.sort(function(a, b) {
+      newProdArray = miniShopStore.getAll().sort(function(a, b) {
 
           return parseFloat(a[type]) - parseFloat(b[type]);
       });
@@ -18,13 +20,13 @@ export default class SortBy extends React.Component {
 
     if(order === 'priceDesc' || order === 'dateDesc') {
 
-      newProdArray = productsArray.sort(function(a, b) {
+      newProdArray = miniShopStore.getAll().sort(function(a, b) {
 
           return parseFloat(a[type]) + parseFloat(b[type]);
       });
     }
 
-    this.props.setNewSortOrder(newProdArray);
+    miniShopActions.sortProducts(newProdArray);
   }
 
   render(){

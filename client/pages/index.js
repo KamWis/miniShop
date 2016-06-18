@@ -2,36 +2,43 @@ import React from "react";
 import TopToolbar from '../components/TopToolbar';
 import ProductList from '../components/ProductList';
 import productsArray from '../tmpProductsArray';
+import miniShopStore from '../stores/miniShopStore';
 
 export default class Container extends React.Component {
 
   constructor(props) {
     super(props);
 
-    this.state = {
-      grid: 'width100',
-      gridImage: 'width100',
-      tileWidth: 6,
-      productsArray: productsArray
-    }
+    this.getProducts = this.GetProducts.bind(this);
+    this.getClasses = this.updateGrid.bind(this);
+
   }
 
-  updateGridSwitcher(classes) {
+  componentWillMount() {
+    miniShopStore.on('change', this.getProducts);
+    miniShopStore.on('change', this.getClasses);
+  }
+
+  componentWillUnmount() {
+    miniShopStore.removeListener('change', this.getProducts);
+    miniShopStore.removeListener('change', this.getClasses);
+  }
+
+  updateGrid() {
 
     this.setState({
 
-      grid: classes.grid,
-      gridImage: classes.gridImage,
-      tileWidth: classes.tileWidth
+      grid: miniShopStore.getClasses().grid,
+      gridImage: miniShopStore.getClasses().gridImage,
+      tileWidth: miniShopStore.getClasses().tileWidth
     })
   }
 
-  sortProducts(prodArray) {
+  GetProducts() {
 
     this.setState({
-      productsArray: prodArray
-    })
-
+      productsArray: miniShopStore.getAll()
+    });
   }
 
   render() {
@@ -39,11 +46,8 @@ export default class Container extends React.Component {
     return (
 
       <div>
-        <TopToolbar getSwitcherClasses={this.updateGridSwitcher.bind(this)} getNewProdListOrder={this.sortProducts.bind(this)} />
-        <ProductList
-          productsArray={this.state.productsArray}
-          changesClasses={this.state}
-        />
+        <TopToolbar />
+        <ProductList />
       </div>
     )
   }
