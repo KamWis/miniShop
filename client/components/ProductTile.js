@@ -19,11 +19,11 @@ export default class ProductTile extends React.Component {
             </div>
             <div className="width100">
 
-              <p className="date">{this.props.date}</p>
+              <p className="date">{new Date(parseInt(this.props.date)).toLocaleDateString()}</p>
             </div>
           </Col>
           <Col xs={3}>
-            <p className="price">{this.props.price}</p>
+            <p className="price">${this.props.price}</p>
           </Col>
         </div>
       </Col>

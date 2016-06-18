@@ -11,7 +11,8 @@ export default class Container extends React.Component {
     this.state = {
       grid: 'width100',
       gridImage: 'width100',
-      tileWidth: 6
+      tileWidth: 6,
+      productsArray: productsArray
     }
   }
 
@@ -25,14 +26,22 @@ export default class Container extends React.Component {
     })
   }
 
+  sortProducts(prodArray) {
+
+    this.setState({
+      productsArray: prodArray
+    })
+
+  }
+
   render() {
 
     return (
 
       <div>
-        <TopToolbar getSwitcherClasses={this.updateGridSwitcher.bind(this)} />
+        <TopToolbar getSwitcherClasses={this.updateGridSwitcher.bind(this)} getNewProdListOrder={this.sortProducts.bind(this)} />
         <ProductList
-          productsArray={productsArray}
+          productsArray={this.state.productsArray}
           changesClasses={this.state}
         />
       </div>
