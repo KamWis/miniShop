@@ -3,8 +3,6 @@ import TopToolbar from 'components/TopToolbar';
 import ProductList from 'components/ProductList';
 import productsArray from '../tmpProductsArray';
 import {miniShopStore, store} from '../stores/miniShopStore';
-import {connect} from 'react-redux';
-
 
 export default class Container extends React.Component {
 
@@ -17,7 +15,8 @@ export default class Container extends React.Component {
   componentWillMount() {
 
     miniShopStore.on('change', this.forceUpdateFnc);
-    store.subscribe(() =>{this.forceUpdate()});
+    // store.subscribe(() =>{this.forceUpdate()});
+
   }
 
   componentDidMount() {
@@ -28,7 +27,7 @@ export default class Container extends React.Component {
   componentWillUnmount() {
 
     miniShopStore.removeListener('change', this.forceUpdateFnc);
-
+    // store.subscribe(() =>{});
   }
 
   ForceUpdateFnc() {
@@ -46,3 +45,4 @@ export default class Container extends React.Component {
     )
   }
 }
+

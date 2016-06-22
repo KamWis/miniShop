@@ -2,15 +2,16 @@ import React from 'react';
 import {Row, Col} from 'react-bootstrap';
 import ProductTile from './ProductTile';
 import {store} from '../stores/miniShopStore';
+import {connect} from 'react-redux';
 
-export default class ProductList extends React.Component {
+class ProductList extends React.Component {
   constructor() {
     super();
   }
 
   render() {
 
-    const productList = store.getState().products.map((product, index) => {
+    const productList = this.props.list.map((product, index) => {
 
             return <ProductTile
                       key={index}
@@ -32,3 +33,11 @@ export default class ProductList extends React.Component {
     );
   }
 }
+
+const mapStateToProps = function(store) {
+  return {
+    list: store.products
+  };
+}
+
+export default connect(mapStateToProps)(ProductList);
