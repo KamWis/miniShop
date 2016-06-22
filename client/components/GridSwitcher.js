@@ -1,6 +1,6 @@
 import React from 'react';
 import * as miniShopActions from '../actions/index';
-import miniShopStore from '../stores/miniShopStore';
+import {miniShopStore} from '../stores/miniShopStore';
 
 export default class GridSwitcher extends React.Component {
 
@@ -40,8 +40,8 @@ export default class GridSwitcher extends React.Component {
   render() {
     return (
       <div className="pull-right">
-        <i className="material-icons grid-icons" onClick={this.switchClasses.bind(this, "list")}>&#xE8EF;</i>
-        <i className="material-icons grid-icons" onClick={this.switchClasses.bind(this, "grid")}>&#xE8F0;</i>
+        <i className="material-icons grid-icons" onClick={this.switchClasses.bind(this, "list")}>view_list</i>
+        <i className="material-icons grid-icons" onClick={this.switchClasses.bind(this, "grid")}>view_module</i>
       </div>
     );
   }

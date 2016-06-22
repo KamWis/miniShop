@@ -1,6 +1,6 @@
 import React from "react";
 import { Col, DropdownButton, MenuItem } from 'react-bootstrap';
-import miniShopStore from '../stores/miniShopStore';
+import {miniShopStore} from '../stores/miniShopStore';
 import * as miniShopActions from '../actions/index';
 
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Col} from 'react-bootstrap';
-import miniShopStore from '../stores/miniShopStore';
+import {miniShopStore} from '../stores/miniShopStore';
 
 
 export default class ProductTile extends React.Component {

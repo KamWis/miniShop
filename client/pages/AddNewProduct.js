@@ -3,6 +3,11 @@ import * as miniShopActions from '../actions/index';
 
 export default class Container extends React.Component {
 
+  componentDidMount() {
+
+    $.material.init();
+  }
+
   createProduct() {
 
     const productNameInput = this.refs.prodName,

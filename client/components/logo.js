@@ -1,5 +1,5 @@
 import React from "react";
-
-const Logo = () => <div className="logo"><a href="#"><img src="/images/logo.png" /></a></div>;
+import LogoImg from '../images/logo.png';
+const Logo = () => <div className="logo"><a href="#"><img src={LogoImg} /></a></div>;
 
 export default Logo;

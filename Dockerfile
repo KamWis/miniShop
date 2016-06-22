@@ -18,6 +18,6 @@ RUN webpack
 ENV NODE_ENV=production
 ENV PORT=4000
 
-CMD [ "/usr/local/bin/node", "./index.js" ]
+CMD [ "/usr/local/bin/node", "./server/server.js" ]
 
 EXPOSE 4000
