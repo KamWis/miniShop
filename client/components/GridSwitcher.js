@@ -34,9 +34,12 @@ export default class GridSwitcher extends React.Component {
           }
       }
 
-      this.props.gridSwitcher(
-        newClasses
-      )
+      if(Object.keys(newClasses).length != 0 && newClasses.constructor === Object) {
+
+        this.props.gridSwitcher(newClasses)
+      } else {
+        return;
+      }
     }
   }
 

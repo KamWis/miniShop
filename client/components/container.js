@@ -2,7 +2,7 @@ import React from 'react';
 import Header from './header';
 import {Grid} from 'react-bootstrap';
 
- const Container = React.createClass ({
+export default class Container extends React.Component {
 
   render() {
 
@@ -22,6 +22,5 @@ import {Grid} from 'react-bootstrap';
       </Grid>
     )
   }
-});
+};
 
-export default Container;
