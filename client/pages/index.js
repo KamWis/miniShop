@@ -20,7 +20,7 @@ export default class Index extends React.Component {
 
       <div>
         <TopToolbar sortList={this.props.sortProducts} gridClasses={this.props.gridClasses} gridSwitcher={this.props.gridSwitcher} />
-        <ProductList prodList={this.props.productList} />
+        <ProductList />
       </div>
     )
   }

@@ -1,13 +1,14 @@
 import React from 'react';
 import {Row, Col} from 'react-bootstrap';
 import ProductTile from './ProductTile';
+import {connect} from 'react-redux';
 
-const ProductList = ({prodList}) => (
+const ProductList = (props) => (
 
   <Row>
     <Col sm={12} className="product_row_spacing">
       <Row>
-        {prodList.map((product, index) => {
+        {props.productList.map((product, index) => {
 
         return <ProductTile
                   key={index}
@@ -23,4 +24,12 @@ const ProductList = ({prodList}) => (
   </Row>
 )
 
-export default ProductList;
+function mapStateToProps(state) {
+  return {
+    productList: state.products,
+    gridClasses: state.gridClasses
+  }
+}
+
+export default connect(mapStateToProps)(ProductList);
+// export default ProductList

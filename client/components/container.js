@@ -10,7 +10,6 @@ export default class Container extends React.Component {
       createProduct,
       gridClasses,
       gridSwitcher,
-      productList,
       sortProducts
       } = this.props;
 
@@ -18,7 +17,7 @@ export default class Container extends React.Component {
       <Grid>
         <Header />
 
-        {React.cloneElement(this.props.children, {createProduct, gridClasses, gridSwitcher, productList, sortProducts})}
+        {React.cloneElement(this.props.children, {createProduct, gridClasses, gridSwitcher, sortProducts})}
       </Grid>
     )
   }

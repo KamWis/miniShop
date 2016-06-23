@@ -1,8 +1,8 @@
 import React from 'react';
-import * as miniShopActions from '../actions/index';
-import {store} from '../stores/miniShopStore';
+import {connect} from 'react-redux';
 
-export default class GridSwitcher extends React.Component {
+ class GridSwitcher extends React.Component {
+
   constructor() {
     super();
   }
@@ -38,6 +38,7 @@ export default class GridSwitcher extends React.Component {
 
         this.props.gridSwitcher(newClasses)
       } else {
+
         return;
       }
     }
@@ -53,3 +54,11 @@ export default class GridSwitcher extends React.Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    gridClasses: state.gridClasses
+  }
+}
+
+export default connect(mapStateToProps)(GridSwitcher)

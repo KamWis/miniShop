@@ -3,7 +3,7 @@ import { Col, DropdownButton, MenuItem } from 'react-bootstrap';
 import SortBy from './SortBy';
 import GridSwitcher from './GridSwitcher';
 
-const TopToolbar = ({gridSwitcher, gridClasses, sortList}) => (
+const TopToolbar = ({gridSwitcher, sortList}) => (
 
   <Col sm={12} className="top-margin-40 nav-bar-top">
     <Col sm={6}>
@@ -16,7 +16,7 @@ const TopToolbar = ({gridSwitcher, gridClasses, sortList}) => (
       <SortBy sortList={sortList} />
     </Col>
     <Col sm={2} className="pull-left">
-      <GridSwitcher gridClasses={gridClasses} gridSwitcher={gridSwitcher} />
+      <GridSwitcher gridSwitcher={gridSwitcher} />
     </Col>
   </Col>
 );
