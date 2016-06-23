@@ -1,7 +1,7 @@
 import React from "react";
 import * as miniShopActions from '../actions/index';
 
-export default class Container extends React.Component {
+export default class AddNewProduct extends React.Component {
 
   componentDidMount() {
 
@@ -16,7 +16,7 @@ export default class Container extends React.Component {
           productPrice = productPriceInput.value,
           productDate = Date.now();
 
-    miniShopActions.createProduct(
+    this.props.createProduct(
       productName,
       productPrice,
       productDate

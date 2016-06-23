@@ -1,5 +1,6 @@
 import React from "react";
 import LogoImg from '../images/logo.png';
-const Logo = () => <div className="logo"><a href="#"><img src={LogoImg} /></a></div>;
+import {Link} from 'react-router';
+const Logo = () => <div className="logo"><Link to="/"><img src={LogoImg} /></Link></div>;
 
 export default Logo;

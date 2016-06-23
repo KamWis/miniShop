@@ -24,7 +24,7 @@ import {store} from '../stores/miniShopStore';
 // }
 
 export function createProduct(name, price, date) {
-  store.dispatch({
+  return {
     type: 'CREATE_PRODUCT',
     payload: {
       name,
@@ -32,12 +32,24 @@ export function createProduct(name, price, date) {
       date,
       link: 'http://thecatapi.com/api/images/get?format=src&type=jpg&category=space'
     }
-  });
+  };
 }
 
-export function sortProducts(resortedProducts) {
-  store.dispatch({
+export function sortProducts(order, type) {
+  return {
     type: 'SORT_PRODUCTS',
-    payload: resortedProducts
-  })
+    payload: {
+      order,
+      type
+    }
+  }
+}
+
+export function gridSwitcher(newClasses) {
+  return {
+    type: 'SWITCH_GRID',
+    payload: {
+      newClasses
+    }
+  }
 }

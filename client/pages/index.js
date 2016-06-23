@@ -1,22 +1,12 @@
 import React from "react";
 import TopToolbar from 'components/TopToolbar';
 import ProductList from 'components/ProductList';
-import productsArray from '../tmpProductsArray';
-import {miniShopStore, store} from '../stores/miniShopStore';
 
-export default class Container extends React.Component {
+export default class Index extends React.Component {
 
   constructor() {
 
     super();
-    this.forceUpdateFnc = this.ForceUpdateFnc.bind(this);
-  }
-
-  componentWillMount() {
-
-    miniShopStore.on('change', this.forceUpdateFnc);
-    // store.subscribe(() =>{this.forceUpdate()});
-
   }
 
   componentDidMount() {
@@ -24,23 +14,13 @@ export default class Container extends React.Component {
     $.material.init();
   }
 
-  componentWillUnmount() {
-
-    miniShopStore.removeListener('change', this.forceUpdateFnc);
-    // store.subscribe(() =>{});
-  }
-
-  ForceUpdateFnc() {
-    this.forceUpdate();
-  }
-
   render() {
 
     return (
 
       <div>
-        <TopToolbar />
-        <ProductList />
+        <TopToolbar sortList={this.props.sortProducts} gridClasses={this.props.gridClasses} gridSwitcher={this.props.gridSwitcher} />
+        <ProductList prodList={this.props.productList} />
       </div>
     )
   }

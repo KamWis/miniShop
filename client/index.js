@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Router, Route, IndexRoute, hashHistory} from 'react-router';
+import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 import {Provider} from 'react-redux';
 
-import Container from './components/container';
+import App from './App';
 import Index from './pages/index';
 import AddNewProduct from './pages/AddNewProduct';
-import {store} from './stores/miniShopStore';
+import {store, history} from './stores/miniShopStore';
 
 import '../public/build/js/material.min.js';
 import '../public/build/js/ripples.min.js';
@@ -20,8 +20,8 @@ import './stylesheets/style.sass';
 
 
 const router = (
-          <Router history={hashHistory}>
-            <Route path="/" component={Container}>
+          <Router history={history}>
+            <Route path="/" component={App}>
 
               <IndexRoute component={Index}></IndexRoute>
               <Route path="addNewProduct" component={AddNewProduct}></Route>

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Col} from 'react-bootstrap';
-import {miniShopStore} from '../stores/miniShopStore';
+import {store} from '../stores/miniShopStore';
 
 
 export default class ProductTile extends React.Component {
@@ -11,7 +11,7 @@ export default class ProductTile extends React.Component {
   }
   render() {
 
-    const classes = miniShopStore.getClasses();
+    const classes = store.getState().gridClasses;
 
     return (
       <Col sm={classes.tileWidth} className="single_tile">
