@@ -3,6 +3,16 @@ import * as miniShopActions from '../actions/index';
 
 export default class AddNewProduct extends React.Component {
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      prodNameValid: 'has-info',
+      prodPriceValid: 'has-info',
+      inputContainerCass: "form-group label-floating"
+    };
+  }
+
   componentDidMount() {
 
     $.material.init();
@@ -10,28 +20,86 @@ export default class AddNewProduct extends React.Component {
 
   createProduct() {
 
-    const productNameInput = this.refs.prodName,
-          productPriceInput = this.refs.prodPrice,
-          productName = productNameInput.value,
-          productPrice = productPriceInput.value,
+    const prodNInput = this.refs.prodName,
+          prodPInput = this.refs.prodPrice,
+          productName = prodNInput.value,
+          productPrice = prodPInput.value,
           productDate = Date.now();
 
-    this.props.createProduct(
-      productName,
-      productPrice,
-      productDate
-    );
+    this.setState({
+      prodNameValid: 'has-info',
+      prodPriceValid: 'has-info'
+    });
+
+    if(this.fieldsValidation({productName, productPrice})) {
+
+      this.props.createProduct(
+        productName,
+        productPrice,
+        productDate
+      );
+    }
+  }
+
+  fieldsValidation(inputs) {
+    const namePatern = /^[A-Za-z0-9_.]+$/,
+    pricePatern = /^[1-9]\d*(((,\d{0,2}){1})?(\.\d{0,2})?)$/;
+    let valid = true;
+
+    if(!namePatern.test(inputs.productName)) {
+
+      this.setState({
+        prodNameValid: 'has-error'
+      });
+
+      valid = false;
+    }
+
+    if(!pricePatern.test(inputs.productPrice)) {
+
+      this.setState({
+        prodPriceValid: 'has-error'
+      });
+
+      valid = false;
+    }
+
+    return valid;
+  }
+
+  resetOnChange(e) {
+    if(this.state.prodNameValid === 'has-error') {
+
+      this.setState({
+        prodNameValid: 'has-info'
+      });
+    }
+    if(this.state.prodPriceValid === 'has-error')  {
+
+      this.setState({
+        prodPriceValid: 'has-info'
+      });
+    }
   }
 
   render() {
 
     return (
 
-      <div>
-        <label for="product_name">Product name:</label>
-        <input ref="prodName" id="product_name" />
-        <label for="product_price">Product price:</label>
-        <input ref="prodPrice" id="product_price" />
+      <div><br />
+        <h1 className="text-info center">Add product!</h1>
+
+        <div className={this.state.inputContainerCass + ' ' + this.state.prodNameValid}>
+          <label for="product_name" className="control-label">Product name:</label>
+          <input ref="prodName" className="form-control" id="product_name" onKeyUp={this.resetOnChange.bind(this)} />
+          <span className={this.state.prodNameValid === 'has-error' ? "error-block text-danger" : 'hidden'}>This field is invalid.</span>
+        </div>
+
+        <div className={this.state.inputContainerCass + ' ' + this.state.prodPriceValid}>
+          <label for="product_price" className="control-label">Product price:</label>
+          <input ref="prodPrice" className="form-control" id="product_price" onKeyUp={this.resetOnChange.bind(this)} />
+          <span className={this.state.prodPriceValid  === 'has-error' ? "error-block text-danger" : 'hidden'}>This field is invalid.</span>
+        </div>
 
         <button className="btn btn-info btn-raised" onClick={this.createProduct.bind(this)}>Create Product!</button>
       </div>
