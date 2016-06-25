@@ -12,11 +12,11 @@ const ProductList = (props) => (
 
         return <ProductTile
                   key={index}
-                  index={index}
+                  index={product.id}
                   productName={product.name}
-                  imgLink={product.link}
+                  imgLink={product.picture}
                   price={product.price}
-                  date={product.date}
+                  date={product.postDate}
                   />
       })}
       </Row>
@@ -32,4 +32,3 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps)(ProductList);
-// export default ProductList

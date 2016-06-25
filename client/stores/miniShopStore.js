@@ -1,78 +1,10 @@
 import {EventEmitter} from 'events';
 import dispatcher from '../dispatcher';
 import productsArray from '../tmpProductsArray';
-import {combineReducers, createStore} from 'redux';
-import {syncHistoryWithStore} from 'react-router-redux';
+import {combineReducers, createStore, applyMiddleware, compose} from 'redux';
+import thunk from 'redux-thunk';
+import {syncHistoryWithStore, routerReducer} from 'react-router-redux';
 import {browserHistory} from 'react-router';
-import {routerReducer} from 'react-router-redux';
-
-class MiniShopStore extends EventEmitter {
-
-  constructor() {
-    super();
-
-    this.products = productsArray;
-    this.gridClasses = {
-      grid: 'width100',
-      gridImage: 'width100',
-      tileWidth: 6
-    };
-  }
-
-  createProduct(name, price, date) {
-
-    this.products.push({
-      name,
-      price,
-      date,
-      link: 'http://thecatapi.com/api/images/get?format=src&type=jpg&category=space'
-    })
-
-    this.emit('change');
-  }
-
-  // HANDLE INCOMING ACTIONS AND SET NEW OBJECTS
-  // - EMMIT CHANGES TO COMPONENT
-
-  handleActions(action) {
-
-    switch(action.type) {
-
-      case 'CREATE_PRODUCT': {
-        this.createProduct(action.name, action.price, action.date);
-        break;
-      }
-
-      case 'SORT_PRODUCTS': {
-
-        this.products = action.resortedProducts;
-        this.emit('change');
-        break;
-      }
-
-      case 'SWITCH_GRID': {
-
-        this.gridClasses = action.newClasses;
-        this.emit('change');
-        break;
-      }
-    }
-  }
-
-  // SEND WHOLE OBJECTS
-
-  getAll() {
-    return this.products;
-  }
-
-  getClasses() {
-    return this.gridClasses;
-  }
-}
-
-
-
-
 
 
 // REDUX - CLEAN UP THIS FILE AFTER U ARE DONE!
@@ -80,9 +12,15 @@ class MiniShopStore extends EventEmitter {
 var isAscPrice = undefined,
     isAscDate = undefined;
 
-const productsReducer = (state=productsArray, action) => {
+const productsReducer = (state=[], action) => {
 
   switch(action.type) {
+
+    case 'FETCH_PRODUCTS': {
+      // console.log(action.payload);
+      state = action.payload;
+      return state;
+    }
 
     case 'CREATE_PRODUCT': {
       state = state.concat(action.payload);
@@ -170,14 +108,8 @@ const reducers = combineReducers({
   routing: routerReducer
 })
 
-const store = createStore(reducers, window.devToolsExtension && window.devToolsExtension());
+const store = createStore(reducers, compose(applyMiddleware(thunk),  window.devToolsExtension && window.devToolsExtension()));
 
 const history = syncHistoryWithStore(browserHistory, store);
 
-
-
-
-const miniShopStore = new MiniShopStore;
-dispatcher.register(miniShopStore.handleActions.bind(miniShopStore));
-
-export {miniShopStore, store, history};
+export {store, history};

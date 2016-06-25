@@ -24,19 +24,23 @@ export default class AddNewProduct extends React.Component {
           prodPInput = this.refs.prodPrice,
           productName = prodNInput.value,
           productPrice = prodPInput.value,
-          productDate = Date.now();
+          productDate = Date.now(),
+          productLink = 'http://thecatapi.com/api/images/get?format=src&type=jpg&category=space'
 
     this.setState({
       prodNameValid: 'has-info',
       prodPriceValid: 'has-info'
     });
 
+
+
     if(this.fieldsValidation({productName, productPrice})) {
 
       this.props.createProduct(
         productName,
         productPrice,
-        productDate
+        productDate,
+        productLink
       );
     }
   }
@@ -82,12 +86,13 @@ export default class AddNewProduct extends React.Component {
     }
   }
 
+  // NEED TO MAKE SEPERATE COMPONENTS FOR THIS INPUT GROUPS
   render() {
 
     return (
 
       <div><br />
-        <h1 className="text-info center">Add product!</h1>
+        <h1 className="text-info center">ADD NEW PRODUCT!</h1>
 
         <div className={this.state.inputContainerCass + ' ' + this.state.prodNameValid}>
           <label for="product_name" className="control-label">Product name:</label>

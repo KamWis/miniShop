@@ -8,9 +8,7 @@ var htmlWebpackPlugin = new HtmlWebpackPlugin(
   {
     template: __dirname + '/client/index.html',
     filename: 'index.html',
-    inject: 'body',
-    hostname: 'http://localhost:3000',
-    apiPath: 'http://localhost:3000',
+    inject: 'body'
   }
 );
 
@@ -32,7 +30,7 @@ var config = {
 if(isDeveloping) {
 
   appEntry = [
-    'webpack-dev-server/client?http://localhost:3000',
+    // 'webpack-dev-server/client?http://0.0.0.0:3001',
     'webpack/hot/dev-server',
     path.resolve(__dirname, './client/index.js')
   ];
@@ -87,5 +85,8 @@ module.exports = {
     alias: {
       components:'../components'
     }
+  },
+  watchOptions: {
+      poll: true
   }
 }

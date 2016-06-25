@@ -1,7 +1,7 @@
 web:
   build: .
   ports:
-    - "80:4000"
+    - "80:3000"
   volumes:
     - .:/usr/src/app/:rw
   links:
@@ -18,7 +18,7 @@ web:
         cp -a /tmp/node_modules /usr/src/app/website &&
         npm install;
       fi &&
-      webpack &&
+
       /usr/local/bin/node ./server/server.js;
     '
 db:

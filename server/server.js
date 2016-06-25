@@ -1,14 +1,48 @@
-var path = require('path');
 var express = require('express');
+var router = express.Router();
 
+var bodyParser = require('body-parser');
 
 var port = process.env.PORT || 3000;
 var app = express();
 var staticPath = 'public/build';
 
-app.use(express.static(staticPath));
+var knex = require('./db');
+var bookshelf = require('bookshelf')(knex);
 
-app.listen(port, '0.0.0.0', function onStart(err) {
+var Product = bookshelf.Model.extend({
+  tableName: 'products'
+})
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+router.post('/api/Product', function(req, res) {
+
+  var data = {
+    name: req.body.name,
+    price: req.body.price,
+    postDate: Date.now(),
+    picture: req.body.link
+  }
+
+  Product.forge(data).save().then(function(data) {
+
+    res.send(req.body);
+  });
+
+});
+
+router.get('/api/Product', function(req, res) {
+
+  Product.forge().fetchAll().then(function(product){
+
+    res.send(product.toJSON());
+  })
+});
+
+app.use(express.static(staticPath), router);
+app.listen(3000, '0.0.0.0', function onStart(err) {
   if (err) {
     console.log(err);
   }

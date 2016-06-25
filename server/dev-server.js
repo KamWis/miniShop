@@ -9,10 +9,10 @@ const app = new WebpackDevServer(webpack(config), {
   historyApiFallback: true
 });
 
-app.listen(3000, 'localhost', function (err, result) {
+app.listen(3000, '0.0.0.0', function (err, result) {
   if (err) {
     return console.log(err);
   }
 
-  console.log('Listening at http://localhost:3000/');
+  console.log('Listening at http://0.0.0.0:3000/');
 });

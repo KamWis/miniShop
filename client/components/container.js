@@ -11,7 +11,7 @@ export default class Container extends React.Component {
       gridClasses,
       gridSwitcher,
       sortProducts
-      } = this.props;
+    } = this.props;
 
     return (
       <Grid>

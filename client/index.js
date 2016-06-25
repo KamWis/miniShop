@@ -7,6 +7,7 @@ import App from './App';
 import Index from './pages/index';
 import AddNewProduct from './pages/AddNewProduct';
 import {store, history} from './stores/miniShopStore';
+import {onIndexEnter} from './indexRouteCallback';
 
 import '../public/build/js/material.min.js';
 import '../public/build/js/ripples.min.js';
@@ -23,7 +24,7 @@ const router = (
           <Router history={history}>
             <Route path="/" component={App}>
 
-              <IndexRoute component={Index}></IndexRoute>
+              <IndexRoute component={Index} onEnter={onIndexEnter}></IndexRoute>
               <Route path="addNewProduct" component={AddNewProduct}></Route>
             </Route>
           </Router>

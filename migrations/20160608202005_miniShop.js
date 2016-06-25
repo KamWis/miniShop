@@ -7,7 +7,7 @@ exports.up = function(knex, Promise) {
               table.string('name');
               table.integer('price');
               table.string('picture');
-              table.dateTime('postDate');
+              table.string('postDate');
           })
       ])
 };

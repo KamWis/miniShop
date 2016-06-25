@@ -14,8 +14,8 @@ export default class SortBy extends React.Component {
         <DropdownButton bsStyle="default" className="btn btn-raised" title="Select" id="nav-dropdown">
           <MenuItem onClick={this.props.sortList.bind(null, 'priceAsc', 'price')}>Price Asc.</MenuItem>
           <MenuItem onClick={this.props.sortList.bind(null, 'priceDesc', 'price')}>Price Desc.</MenuItem>
-          <MenuItem onClick={this.props.sortList.bind(null, 'dateAsc', 'date')}>Date Asc.</MenuItem>
-          <MenuItem onClick={this.props.sortList.bind(null, 'dateDesc', 'date')}>Date Desc.</MenuItem>
+          <MenuItem onClick={this.props.sortList.bind(null, 'dateAsc', 'postDate')}>Date Asc.</MenuItem>
+          <MenuItem onClick={this.props.sortList.bind(null, 'dateDesc', 'postDate')}>Date Desc.</MenuItem>
         </DropdownButton>
       </div>
     );
