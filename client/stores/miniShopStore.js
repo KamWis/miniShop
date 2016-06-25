@@ -17,12 +17,13 @@ const productsReducer = (state=[], action) => {
   switch(action.type) {
 
     case 'FETCH_PRODUCTS': {
-      // console.log(action.payload);
+
       state = state.concat(action.payload);
       return state;
     }
 
     case 'CREATE_PRODUCT': {
+
       state = state.concat(action.payload);
       return state;
     }
@@ -81,10 +82,21 @@ const productsReducer = (state=[], action) => {
   }
 };
 
-const productsAvailable = (state=true, action) => {
+const productsAvailableReducer = (state=true, action) => {
   switch(action.type) {
     case 'SHOW_NO_PRODUCT_MESSAGE': {
       state = action.payload;
+      return state;
+    }
+    default:
+    return state;
+  }
+}
+
+const pageCountReducer = (state=1, action) => {
+  switch(action.type) {
+    case 'COUNT_PRODUCT_PAGES': {
+      state = state + action.payload;
       return state;
     }
     default:
@@ -116,7 +128,8 @@ const gridClassesReducer = (state=gridClasses, action) => {
 const reducers = combineReducers({
   products: productsReducer,
   gridClasses: gridClassesReducer,
-  productsAvailable: productsAvailable,
+  productsAvailable: productsAvailableReducer,
+  pageCount: pageCountReducer,
   routing: routerReducer
 })
 

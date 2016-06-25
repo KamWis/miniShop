@@ -22,8 +22,8 @@ router.post('/api/Product', function(req, res) {
   var data = {
     name: req.body.name,
     price: req.body.price,
-    postDate: Date.now(),
-    picture: req.body.link
+    postDate: req.body.postDate,
+    picture: req.body.picture
   }
 
   Product.forge(data).save().then(function(data) {
@@ -35,10 +35,6 @@ router.post('/api/Product', function(req, res) {
 
 router.get('/api/Product', function(req, res) {
 
-  // Product.forge().fetchAll().then(function(product){
-
-  //   res.send(product.toJSON());
-  // })
   Product.forge().fetchPage({pageSize:10, page: req.query.page}).then(function(product){
 
     var result = product.toJSON();

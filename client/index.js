@@ -22,9 +22,9 @@ import './stylesheets/style.sass';
 
 const router = (
           <Router history={history}>
-            <Route path="/" component={App}>
+            <Route path="/" component={App} onEnter={onIndexEnter}>
 
-              <IndexRoute component={Index} onEnter={onIndexEnter}></IndexRoute>
+              <IndexRoute component={Index} ></IndexRoute>
               <Route path="addNewProduct" component={AddNewProduct}></Route>
             </Route>
           </Router>

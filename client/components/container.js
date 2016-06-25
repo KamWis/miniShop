@@ -10,14 +10,16 @@ export default class Container extends React.Component {
       createProduct,
       gridClasses,
       gridSwitcher,
-      sortProducts
+      sortProducts,
+      pageCount,
+      productsAvailable
     } = this.props;
 
     return (
       <Grid>
         <Header />
 
-        {React.cloneElement(this.props.children, {createProduct, gridClasses, gridSwitcher, sortProducts})}
+        {React.cloneElement(this.props.children, {createProduct, gridClasses, gridSwitcher, sortProducts, pageCount, productsAvailable})}
       </Grid>
     )
   }

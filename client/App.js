@@ -6,7 +6,9 @@ import Container from './components/container';
 function mapStateToProps(state) {
   return {
     productList: state.products,
-    gridClasses: state.gridClasses
+    gridClasses: state.gridClasses,
+    pageCount: state.pageCount,
+    productsAvailable: state.productsAvailable
   }
 }
 

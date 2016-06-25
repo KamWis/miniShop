@@ -11,6 +11,7 @@ export function fetchProducts(pageNumber=1) {
       if(typeof data === 'object') {
 
         dispatch({type:'FETCH_PRODUCTS', payload: data});
+        dispatch({type:'SHOW_NO_PRODUCT_MESSAGE', payload: true});
       }
        else {
         dispatch({type:'SHOW_NO_PRODUCT_MESSAGE', payload: false});
@@ -26,8 +27,8 @@ export function createProduct(name, price, date, link) {
   const request = axios.post('/api/Product', {
     name,
     price,
-    date,
-    link
+    postDate: date,
+    picture: link
   });
 
   return (dispatch) => {
@@ -56,5 +57,12 @@ export function gridSwitcher(newClasses) {
     payload: {
       newClasses
     }
+  }
+}
+
+export function productPageCount() {
+  return {
+    type: 'COUNT_PRODUCT_PAGES',
+    payload: 1
   }
 }
