@@ -13,7 +13,7 @@ var bookshelf = require('bookshelf')(knex);
 var Product = bookshelf.Model.extend({
   tableName: 'products'
 })
-
+bookshelf.plugin('pagination');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -35,9 +35,19 @@ router.post('/api/Product', function(req, res) {
 
 router.get('/api/Product', function(req, res) {
 
-  Product.forge().fetchAll().then(function(product){
+  // Product.forge().fetchAll().then(function(product){
 
-    res.send(product.toJSON());
+  //   res.send(product.toJSON());
+  // })
+  Product.forge().fetchPage({pageSize:10, page: req.query.page}).then(function(product){
+
+    var result = product.toJSON();
+
+    if(result.length > 0) {
+      res.send(result);
+    } else {
+      res.send('There is no more results to load.');
+    }
   })
 });
 

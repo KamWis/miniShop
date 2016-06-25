@@ -18,7 +18,7 @@ const productsReducer = (state=[], action) => {
 
     case 'FETCH_PRODUCTS': {
       // console.log(action.payload);
-      state = action.payload;
+      state = state.concat(action.payload);
       return state;
     }
 
@@ -81,6 +81,17 @@ const productsReducer = (state=[], action) => {
   }
 };
 
+const productsAvailable = (state=true, action) => {
+  switch(action.type) {
+    case 'SHOW_NO_PRODUCT_MESSAGE': {
+      state = action.payload;
+      return state;
+    }
+    default:
+    return state;
+  }
+}
+
 const gridClasses = {
     grid: 'width100',
     gridImage: 'width100',
@@ -105,6 +116,7 @@ const gridClassesReducer = (state=gridClasses, action) => {
 const reducers = combineReducers({
   products: productsReducer,
   gridClasses: gridClassesReducer,
+  productsAvailable: productsAvailable,
   routing: routerReducer
 })
 

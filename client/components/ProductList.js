@@ -19,6 +19,9 @@ const ProductList = (props) => (
                   date={product.postDate}
                   />
       })}
+      <Col sm={12} className={props.productsAvailable ? 'hidden' : '' } >
+        There is no more product to load...
+      </Col>
       </Row>
     </Col>
   </Row>
@@ -27,6 +30,7 @@ const ProductList = (props) => (
 function mapStateToProps(state) {
   return {
     productList: state.products,
+    productsAvailable: state.productsAvailable,
     gridClasses: state.gridClasses
   }
 }

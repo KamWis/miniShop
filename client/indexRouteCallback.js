@@ -3,5 +3,5 @@ import {fetchProducts} from './actions/index';
 
 export function onIndexEnter() {
 
-  store.dispatch(fetchProducts());
+  store.dispatch(fetchProducts(1));
 }

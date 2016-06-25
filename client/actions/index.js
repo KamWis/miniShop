@@ -1,13 +1,20 @@
 import axios from 'axios';
 
-export function fetchProducts() {
+export function fetchProducts(pageNumber=1) {
 
-  const request = axios.get('/api/Product');
+  const request = axios.get('/api/Product?page=' + pageNumber);
 
   return (dispatch) => {
 
     request.then(({data}) => {
-      dispatch({type:'FETCH_PRODUCTS', payload: data})
+
+      if(typeof data === 'object') {
+
+        dispatch({type:'FETCH_PRODUCTS', payload: data});
+      }
+       else {
+        dispatch({type:'SHOW_NO_PRODUCT_MESSAGE', payload: false});
+       }
     }).catch(function(err) {
       console.log(err);
     });
