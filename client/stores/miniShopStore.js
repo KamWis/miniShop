@@ -3,6 +3,7 @@ import dispatcher from '../dispatcher';
 import productsArray from '../tmpProductsArray';
 import {combineReducers, createStore, applyMiddleware, compose} from 'redux';
 import thunk from 'redux-thunk';
+import throttleActions from "redux-throttle-actions";
 import {syncHistoryWithStore, routerReducer} from 'react-router-redux';
 import {browserHistory} from 'react-router';
 
@@ -45,7 +46,7 @@ const productsReducer = (state=[], action) => {
         });
         let count = 0;
         state = state.map(function(product){
-          product.index = count++;
+          product.id = count++;
           return product;
         })
       }
@@ -69,7 +70,7 @@ const productsReducer = (state=[], action) => {
         });
         let count = 0;
         state = state.map(function(product){
-          product.index = count++;
+          product.id = count++;
           return product;
         })
       }
@@ -132,6 +133,8 @@ const reducers = combineReducers({
   pageCount: pageCountReducer,
   routing: routerReducer
 })
+
+const throttleMiddleware = throttleActions(['SHOW_NO_PRODUCT_MESSAGE', 'FETCH_PRODUCTS', 'COUNT_PRODUCT_PAGES'], 1000);
 
 const store = createStore(reducers, compose(applyMiddleware(thunk),  window.devToolsExtension && window.devToolsExtension()));
 

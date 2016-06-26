@@ -35,7 +35,7 @@ router.post('/api/Product', function(req, res) {
 
 router.get('/api/Product', function(req, res) {
 
-  Product.forge().fetchPage({pageSize:10, page: req.query.page}).then(function(product){
+  Product.forge().fetchPage({pageSize:8, page: req.query.page}).then(function(product){
 
     var result = product.toJSON();
 

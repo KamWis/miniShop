@@ -11,6 +11,7 @@ export function fetchProducts(pageNumber=1) {
       if(typeof data === 'object') {
 
         dispatch({type:'FETCH_PRODUCTS', payload: data});
+        dispatch({type: 'COUNT_PRODUCT_PAGES', payload: 1});
         dispatch({type:'SHOW_NO_PRODUCT_MESSAGE', payload: true});
       }
        else {

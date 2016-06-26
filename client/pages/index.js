@@ -3,6 +3,7 @@ import TopToolbar from 'components/TopToolbar';
 import ProductList from 'components/ProductList';
 import {store} from '../stores/miniShopStore';
 import {fetchProducts, productPageCount} from '../actions/index';
+import throttle from 'lodash.throttle';
 
 export default class Index extends React.Component {
 
@@ -14,7 +15,7 @@ export default class Index extends React.Component {
   componentDidMount() {
 
     $.material.init();
-    window.addEventListener('scroll', this.handleScroll.bind(this));
+    window.addEventListener('scroll', throttle(this.handleScroll.bind(this), 1000));
   }
 
 
@@ -29,12 +30,7 @@ export default class Index extends React.Component {
     const scrollTop = event.target.scrollingElement.scrollTop;
     const bodyHeight = event.target.scrollingElement.clientHeight;
 
-
     if(scrollTop + window.innerHeight == bodyHeight) {
-
-      if(this.props.productsAvailable) {
-        store.dispatch(productPageCount());
-      }
 
       store.dispatch(fetchProducts(this.props.pageCount));
     }
