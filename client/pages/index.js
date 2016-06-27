@@ -2,7 +2,7 @@ import React from "react";
 import TopToolbar from 'components/TopToolbar';
 import ProductList from 'components/ProductList';
 import {store} from '../stores/miniShopStore';
-import {fetchProducts, productPageCount} from '../actions/index';
+import {fetchProducts, zeroProductPageCount, sortProducts, resetProductList} from '../actions/index';
 import throttle from 'lodash.throttle';
 
 export default class Index extends React.Component {
@@ -10,31 +10,39 @@ export default class Index extends React.Component {
   constructor() {
 
     super();
+
+    this.beforeScrollEvent = throttle(this.handleScroll.bind(this), 1000);
+  }
+
+  componentWillMount() {
+
+    store.dispatch(zeroProductPageCount());
+    store.dispatch(fetchProducts(1, store.getState().sortOrder, true));
   }
 
   componentDidMount() {
 
     $.material.init();
-    window.addEventListener('scroll', throttle(this.handleScroll.bind(this), 1000));
+    window.addEventListener('scroll', this.beforeScrollEvent);
   }
-
-
 
   componentWillUnmount() {
 
-    window.removeEventListener('scroll', this.handleScroll.bind(this));
+    window.removeEventListener('scroll', this.beforeScrollEvent);
+    store.dispatch(resetProductList());
   }
 
-  handleScroll (event) {
+
+
+  handleScroll(event) {
 
     const scrollTop = event.target.scrollingElement.scrollTop;
     const bodyHeight = event.target.scrollingElement.clientHeight;
 
-    if(scrollTop + window.innerHeight == bodyHeight) {
+    if(scrollTop + window.innerHeight >= bodyHeight - 80) {
 
-      store.dispatch(fetchProducts(this.props.pageCount));
+      store.dispatch(fetchProducts(store.getState().pageCount, store.getState().sortOrder));
     }
-
   }
 
   render() {
@@ -42,10 +50,9 @@ export default class Index extends React.Component {
     return (
 
       <div>
-        <TopToolbar sortList={this.props.sortProducts} gridClasses={this.props.gridClasses} gridSwitcher={this.props.gridSwitcher} />
+        <TopToolbar gridClasses={this.props.gridClasses} gridSwitcher={this.props.gridSwitcher} />
         <ProductList />
       </div>
     )
   }
 }
-

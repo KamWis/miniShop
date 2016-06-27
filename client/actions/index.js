@@ -1,8 +1,10 @@
 import axios from 'axios';
 
-export function fetchProducts(pageNumber=1) {
+// MAKE TYPES AS CONSTANTS AND CLEAN UP !!!
 
-  const request = axios.get('/api/Product?page=' + pageNumber);
+export function fetchProducts(pageNumber=1, order='name', onLoad=false) {
+
+  const request = axios.get('/api/Product?page=' + pageNumber + '&order=' + order);
 
   return (dispatch) => {
 
@@ -11,6 +13,7 @@ export function fetchProducts(pageNumber=1) {
       if(typeof data === 'object') {
 
         dispatch({type:'FETCH_PRODUCTS', payload: data});
+
         dispatch({type: 'COUNT_PRODUCT_PAGES', payload: 1});
         dispatch({type:'SHOW_NO_PRODUCT_MESSAGE', payload: true});
       }
@@ -21,6 +24,13 @@ export function fetchProducts(pageNumber=1) {
       console.log(err);
     });
   };
+}
+
+export function resetProductList() {
+
+  return {
+    type: 'RESET_PRODUCT_LIST'
+  }
 }
 
 export function createProduct(name, price, date, link) {
@@ -35,21 +45,36 @@ export function createProduct(name, price, date, link) {
   return (dispatch) => {
 
     request.then(({data}) => {
-      dispatch({type:'CREATE_PRODUCT', payload: data})
+      console.log('product has beed added');
     }).catch(function(err) {
       console.log(err);
     });
   };
 }
 
-export function sortProducts(order, type) {
-  return {
-    type: 'SORT_PRODUCTS',
-    payload: {
-      order,
-      type
-    }
-  }
+export function sortProducts(order) {
+
+  const request = axios.get('/api/Product?page=1&order=' + order);
+
+  return (dispatch) => {
+
+    request.then(({data}) => {
+
+      if(typeof data === 'object') {
+        dispatch({type: 'RESET_PRODUCT_LIST'});
+        dispatch({type: 'ZERO_PRODUCT_PAGES_COUNT'});
+        dispatch({type:'FETCH_PRODUCTS', payload: data});
+        dispatch({type: 'COUNT_PRODUCT_PAGES', payload: 1});
+        dispatch({type:'SHOW_NO_PRODUCT_MESSAGE', payload: true});
+        dispatch({type: 'SORT_PRODUCTS', payload: order});
+      }
+       else {
+        dispatch({type:'SHOW_NO_PRODUCT_MESSAGE', payload: false});
+       }
+    }).catch(function(err) {
+      console.log(err);
+    });
+  };
 }
 
 export function gridSwitcher(newClasses) {
@@ -65,5 +90,11 @@ export function productPageCount() {
   return {
     type: 'COUNT_PRODUCT_PAGES',
     payload: 1
+  }
+}
+
+export function zeroProductPageCount() {
+  return {
+    type: 'ZERO_PRODUCT_PAGES_COUNT'
   }
 }
