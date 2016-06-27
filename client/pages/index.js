@@ -11,7 +11,7 @@ export default class Index extends React.Component {
 
     super();
 
-    this.beforeScrollEvent = throttle(this.handleScroll.bind(this), 1000);
+    this.beforeScrollEvent = throttle(this.handleScroll.bind(this), 700);
   }
 
   componentWillMount() {
