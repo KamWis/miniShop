@@ -37,7 +37,7 @@ export default class AddNewProduct extends React.Component {
     if(this.fieldsValidation({productName, productPrice})) {
 
       this.props.createProduct(
-        productName,
+        productName.toLowerCase(),
         productPrice,
         productDate,
         productLink
@@ -46,7 +46,7 @@ export default class AddNewProduct extends React.Component {
   }
 
   fieldsValidation(inputs) {
-    const namePatern = /^[A-Za-z0-9_.]+$/,
+    const namePatern = /^[A-Za-z0-9_. ]+$/,
     pricePatern = /^[1-9]\d*(((,\d{0,2}){1})?(\.\d{0,2})?)$/;
     let valid = true;
 

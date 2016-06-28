@@ -31,6 +31,12 @@ const productsReducer = (state=[], action) => {
       return state;
     }
 
+    case 'SEARCH_PRODUCT': {
+
+      state = action.payload;
+      return state;
+    }
+
     default:
     return state;
   }

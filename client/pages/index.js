@@ -11,13 +11,13 @@ export default class Index extends React.Component {
 
     super();
 
-    this.beforeScrollEvent = throttle(this.handleScroll.bind(this), 700);
+    this.beforeScrollEvent = throttle(this.handleScroll.bind(this), 900);
   }
 
   componentWillMount() {
 
     store.dispatch(zeroProductPageCount());
-    store.dispatch(fetchProducts(1, store.getState().sortOrder, true));
+    store.dispatch(fetchProducts(1, store.getState().sortOrder));
   }
 
   componentDidMount() {
