@@ -1,8 +1,8 @@
 var path = require('path');
 var webpack = require('webpack');
-var autoprefixer = require('autoprefixer')
-var ExtractTextPlugin = require('extract-text-webpack-plugin')
-var HtmlWebpackPlugin = require('html-webpack-plugin')
+var autoprefixer = require('autoprefixer');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 var htmlWebpackPlugin = new HtmlWebpackPlugin(
   {
@@ -30,8 +30,7 @@ var config = {
 if(isDeveloping) {
 
   appEntry = [
-    // 'webpack-dev-server/client?http://0.0.0.0:3001',
-    'webpack/hot/dev-server',
+    'webpack-hot-middleware/client?reload=true',
     path.resolve(__dirname, './client/index.js')
   ];
 
