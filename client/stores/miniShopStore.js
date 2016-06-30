@@ -3,35 +3,33 @@ import thunk from 'redux-thunk';
 import throttleActions from "redux-throttle-actions";
 import {syncHistoryWithStore, routerReducer} from 'react-router-redux';
 import {browserHistory} from 'react-router';
+import * as a from '../constants';
 
 
 // REDUX - CLEAN UP THIS FILE AFTER U ARE DONE!
-
-var isAscPrice = undefined,
-    isAscDate = undefined;
 
 const productsReducer = (state=[], action) => {
 
   switch(action.type) {
 
-    case 'FETCH_PRODUCTS': {
+    case a.ADD_PRODUCTS: {
 
       state = state.concat(action.payload);
       return state;
     }
 
-    case 'RESET_PRODUCT_LIST': {
+    case a.RESET_PRODUCT_LIST: {
       state = [];
       return state;
     }
 
-    case 'CREATE_PRODUCT': {
+    case a.CREATE_PRODUCT: {
 
       state = state.concat(action.payload);
       return state;
     }
 
-    case 'SEARCH_PRODUCT': {
+    case a.FETCH_PRODUCTS: {
 
       state = action.payload;
       return state;
@@ -44,7 +42,19 @@ const productsReducer = (state=[], action) => {
 
 const sortOrderReducer = (state='name', action) => {
   switch(action.type) {
-    case 'SORT_PRODUCTS': {
+    case a.SORT_PRODUCTS: {
+
+      state = action.payload;
+      return state;
+    }
+    default:
+    return state;
+  }
+};
+
+const queryStringReducer = (state='', action) => {
+  switch(action.type) {
+    case a.QUERY_STRING: {
 
       state = action.payload;
       return state;
@@ -56,7 +66,7 @@ const sortOrderReducer = (state='name', action) => {
 
 const productsAvailableReducer = (state=true, action) => {
   switch(action.type) {
-    case 'SHOW_NO_PRODUCT_MESSAGE': {
+    case a.SHOW_NO_PRODUCT_MESSAGE: {
       state = action.payload;
       return state;
     }
@@ -67,11 +77,11 @@ const productsAvailableReducer = (state=true, action) => {
 
 const pageCountReducer = (state=1, action) => {
   switch(action.type) {
-    case 'COUNT_PRODUCT_PAGES': {
+    case a.COUNT_PRODUCT_PAGES: {
       state = state + action.payload;
       return state;
     }
-    case 'ZERO_PRODUCT_PAGES_COUNT': {
+    case a.ZERO_PRODUCT_PAGES_COUNT: {
       state = 1;
       return state;
     }
@@ -107,6 +117,7 @@ const reducers = combineReducers({
   productsAvailable: productsAvailableReducer,
   pageCount: pageCountReducer,
   sortOrder: sortOrderReducer,
+  queryString: queryStringReducer,
   routing: routerReducer
 })
 

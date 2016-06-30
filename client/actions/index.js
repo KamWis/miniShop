@@ -1,37 +1,12 @@
 import axios from 'axios';
+import * as action from '../constants';
 
-// MAKE TYPES AS CONSTANTS AND CLEAN UP !!!
-
-// SAVE QUERY STRING JUST LIKE ORDER
-
-export function fetchProducts(pageNumber=1, order='name', queryString='') {
-
-  const request = axios.get('/api/Product?page=' + pageNumber + '&order=' + order + '&search=' + queryString);
-
-  return (dispatch) => {
-
-    request.then(({data}) => {
-
-      if(typeof data === 'object') {
-
-        dispatch({type:'FETCH_PRODUCTS', payload: data});
-
-        dispatch({type: 'COUNT_PRODUCT_PAGES', payload: 1});
-        dispatch({type:'SHOW_NO_PRODUCT_MESSAGE', payload: true});
-      }
-       else {
-        dispatch({type:'SHOW_NO_PRODUCT_MESSAGE', payload: false});
-       }
-    }).catch(function(err) {
-      console.log(err);
-    });
-  };
-}
+// MAKE TYPES AS CONSTANTS !!!
 
 export function resetProductList() {
 
   return {
-    type: 'RESET_PRODUCT_LIST'
+    type: action.RESET_PRODUCT_LIST
   }
 }
 
@@ -54,7 +29,7 @@ export function createProduct(name, price, date, link) {
   };
 }
 
-export function searchProduct(queryString='', pageNumber=1, order='name') {
+export function fetchProducts(queryString='', pageNumber=1, order='name', resetList=false) {
 
   const request = axios.get('/api/Product?search=' + queryString + '&page=' + pageNumber + '&order=' + order);
 
@@ -64,66 +39,57 @@ export function searchProduct(queryString='', pageNumber=1, order='name') {
 
       if(typeof data === 'object') {
 
-        dispatch({type: 'RESET_PRODUCT_LIST'});
-        dispatch({type: 'SEARCH_PRODUCT', payload: data});
-        dispatch({type: 'COUNT_PRODUCT_PAGES', payload: 1});
-        dispatch({type: 'SHOW_NO_PRODUCT_MESSAGE', payload: true});
-        dispatch({type: 'SORT_PRODUCTS', payload: order});
+        if(resetList) {
+
+          dispatch({type: action.RESET_PRODUCT_LIST});
+          dispatch({type: action.FETCH_PRODUCTS, payload: data});
+        } else {
+
+          dispatch({type:action.ADD_PRODUCTS, payload: data});
+        }
+
+        dispatch({type: action.COUNT_PRODUCT_PAGES, payload: 1});
+        dispatch({type: action.SHOW_NO_PRODUCT_MESSAGE, payload: true});
+        dispatch({type: action.SORT_PRODUCTS, payload: order});
+        dispatch({type: action.QUERY_STRING, payload: queryString});
       }
        else {
-        dispatch({type: 'RESET_PRODUCT_LIST'});
-        dispatch({type:'SHOW_NO_PRODUCT_MESSAGE', payload: false});
+
+        if(resetList) {
+
+          dispatch({type: action.RESET_PRODUCT_LIST});
+        }
+
+        dispatch({type: action.SHOW_NO_PRODUCT_MESSAGE, payload: false});
        }
     }).catch(function(err) {
+
       console.log(err);
     });
   };
-}
-
-export function sortProducts(order) {
-
-  const request = axios.get('/api/Product?page=1&order=' + order);
-
-  return (dispatch) => {
-
-    request.then(({data}) => {
-
-      if(typeof data === 'object') {
-
-        dispatch({type: 'RESET_PRODUCT_LIST'});
-        dispatch({type: 'ZERO_PRODUCT_PAGES_COUNT'});
-        dispatch({type:'FETCH_PRODUCTS', payload: data});
-        dispatch({type: 'COUNT_PRODUCT_PAGES', payload: 1});
-        dispatch({type:'SHOW_NO_PRODUCT_MESSAGE', payload: true});
-        dispatch({type: 'SORT_PRODUCTS', payload: order});
-      }
-       else {
-        dispatch({type:'SHOW_NO_PRODUCT_MESSAGE', payload: false});
-       }
-    }).catch(function(err) {
-      console.log(err);
-    });
-  };
-}
-
-export function gridSwitcher(newClasses) {
-  return {
-    type: 'SWITCH_GRID',
-    payload: {
-      newClasses
-    }
-  }
 }
 
 export function productPageCount() {
+
   return {
-    type: 'COUNT_PRODUCT_PAGES',
+    type: action.COUNT_PRODUCT_PAGES,
     payload: 1
   }
 }
 
 export function zeroProductPageCount() {
+
   return {
-    type: 'ZERO_PRODUCT_PAGES_COUNT'
+    type: action.ZERO_PRODUCT_PAGES_COUNT
+  }
+}
+
+export function gridSwitcher(newClasses) {
+
+  return {
+    type: action.SWITCH_GRID,
+    payload: {
+      newClasses
+    }
   }
 }

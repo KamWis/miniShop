@@ -33,15 +33,10 @@ router.post('/api/Product', function(req, res) {
 
 });
 
-// MAKE SEARCH AND FETCH IN ONE GET AND CHAIN WHERE WITH THE REST SO
-// SORTING AND SEARCH FILTER WILL WORK WITH PAGINATION AND ORDER
-
 router.get('/api/Product', function(req, res) {
 
   Product.where('name', 'like', '%'+req.query.search+'%').orderBy(req.query.order).fetchPage({pageSize:10, page: req.query.page}).then(function(product){
-    console.log('req.query.search: ',req.query.search);
-    console.log('req.query.order: ',req.query.order);
-    console.log('req.query.page: ',req.query.page);
+
     var result = product.toJSON();
 
     if(result.length > 0) {
@@ -51,20 +46,6 @@ router.get('/api/Product', function(req, res) {
     }
   });
 });
-
-// router.get('/api/Product/Search', function(req, res) {
-
-//   Product.where('name', 'like', '%'+req.query.search+'%').orderBy(req.query.order).fetchAll().then(function(data){
-
-//     var result = data.toJSON();
-
-//     if(result.length > 0) {
-//       res.send(result);
-//     } else {
-//       res.send('There is no results to load.');
-//     }
-//   });
-// });
 
 app.use(express.static(staticPath), router);
 app.listen(3000, '0.0.0.0', function onStart(err) {

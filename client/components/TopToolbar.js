@@ -1,8 +1,8 @@
 import React from "react";
-import { Col, DropdownButton, MenuItem } from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
 import SortBy from './SortBy';
 import GridSwitcher from './GridSwitcher';
-import {searchProduct, zeroProductPageCount, fetchProducts, resetProductList} from '../actions/index';
+import {zeroProductPageCount, fetchProducts} from '../actions/index';
 import {store} from '../stores/miniShopStore';
 
 
@@ -23,7 +23,7 @@ export default class TopToolbar extends React.Component {
     if(inputValue.length >= 3) {
 
       store.dispatch(zeroProductPageCount());
-      store.dispatch(searchProduct(inputValue, store.getState().pageCount, store.getState().sortOrder));
+      store.dispatch(fetchProducts(inputValue, store.getState().pageCount, store.getState().sortOrder, true));
 
       this.setState({
         fetchOryginal: true
@@ -33,8 +33,7 @@ export default class TopToolbar extends React.Component {
     if(inputValue.length < 3 && this.state.fetchOryginal) {
 
       store.dispatch(zeroProductPageCount());
-      store.dispatch(resetProductList());
-      store.dispatch(fetchProducts(1, store.getState().sortOrder));
+      store.dispatch(fetchProducts('', 1, store.getState().sortOrder, true));
 
       this.setState({
         fetchOryginal: false

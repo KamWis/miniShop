@@ -2,7 +2,7 @@ import React from "react";
 import TopToolbar from 'components/TopToolbar';
 import ProductList from 'components/ProductList';
 import {store} from '../stores/miniShopStore';
-import {fetchProducts, zeroProductPageCount, sortProducts, resetProductList} from '../actions/index';
+import {fetchProducts, zeroProductPageCount, resetProductList} from '../actions/index';
 import throttle from 'lodash.throttle';
 
 export default class Index extends React.Component {
@@ -17,7 +17,7 @@ export default class Index extends React.Component {
   componentWillMount() {
 
     store.dispatch(zeroProductPageCount());
-    store.dispatch(fetchProducts(1, store.getState().sortOrder));
+    store.dispatch(fetchProducts(store.getState().queryString, 1, store.getState().sortOrder, true));
   }
 
   componentDidMount() {
@@ -29,7 +29,6 @@ export default class Index extends React.Component {
   componentWillUnmount() {
 
     window.removeEventListener('scroll', this.beforeScrollEvent);
-    store.dispatch(resetProductList());
   }
 
 
@@ -41,7 +40,7 @@ export default class Index extends React.Component {
 
     if(scrollTop + window.innerHeight >= bodyHeight - 80) {
 
-      store.dispatch(fetchProducts(store.getState().pageCount, store.getState().sortOrder));
+      store.dispatch(fetchProducts(store.getState().queryString, store.getState().pageCount, store.getState().sortOrder));
     }
   }
 

@@ -1,6 +1,6 @@
 import React from "react";
-import { Col, DropdownButton, MenuItem } from 'react-bootstrap';
-import {sortProducts} from '../actions/index';
+import { DropdownButton, MenuItem } from 'react-bootstrap';
+import {fetchProducts, zeroProductPageCount} from '../actions/index';
 import {store} from '../stores/miniShopStore';
 
 export default class SortBy extends React.Component {
@@ -10,7 +10,8 @@ export default class SortBy extends React.Component {
   }
 
   handleClick(order) {
-    store.dispatch(sortProducts(order));
+    store.dispatch(zeroProductPageCount());
+    store.dispatch(fetchProducts(store.getState().queryString, store.getState().pageCount, order, true));
   }
 
   render(){
