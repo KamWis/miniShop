@@ -1,8 +1,6 @@
 import axios from 'axios';
 import * as action from '../constants';
 
-// MAKE TYPES AS CONSTANTS !!!
-
 export function resetProductList() {
 
   return {
