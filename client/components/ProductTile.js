@@ -15,7 +15,7 @@ export default class ProductTile extends React.Component {
 
     return (
       <Col sm={classes.tileWidth} className="single_tile">
-        <div className={"product_image--grid" + ' ' + classes.gridImage}>
+        <div className={'product_image--grid' + ' ' + classes.gridImage}>
 
           <img src={this.props.imgLink} />
         </div>
@@ -34,6 +34,6 @@ export default class ProductTile extends React.Component {
           </Col>
         </div>
       </Col>
-    )
+    );
   }
 }

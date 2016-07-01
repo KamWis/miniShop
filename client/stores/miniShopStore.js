@@ -13,7 +13,7 @@ const reducers = combineReducers({
   sortOrder: reducer.sortOrderReducer,
   queryString: reducer.queryStringReducer,
   routing: routerReducer
-})
+});
 
 const store = createStore(reducers, compose(applyMiddleware(thunk),  window.devToolsExtension && window.devToolsExtension()));
 

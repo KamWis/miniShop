@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import { DropdownButton, MenuItem } from 'react-bootstrap';
 import {fetchProducts, zeroProductPageCount} from '../actions/index';
 import {store} from '../stores/miniShopStore';

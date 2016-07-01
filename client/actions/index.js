@@ -5,7 +5,7 @@ export function resetProductList() {
 
   return {
     type: action.RESET_PRODUCT_LIST
-  }
+  };
 }
 
 export function createProduct(name, price, date, link) {
@@ -17,12 +17,12 @@ export function createProduct(name, price, date, link) {
     picture: link
   });
 
-  return (dispatch) => {
+  return () => {
 
-    request.then(({data}) => {
-      console.log('product has beed added');
+    request.then(() => {
+
     }).catch(function(err) {
-      console.log(err);
+      console.log(err);// eslint-disable-line
     });
   };
 }
@@ -51,7 +51,7 @@ export function fetchProducts(queryString='', pageNumber=1, order='name', resetL
         dispatch({type: action.SORT_PRODUCTS, payload: order});
         dispatch({type: action.QUERY_STRING, payload: queryString});
       }
-       else {
+      else {
 
         if(resetList) {
 
@@ -59,10 +59,10 @@ export function fetchProducts(queryString='', pageNumber=1, order='name', resetL
         }
 
         dispatch({type: action.SHOW_NO_PRODUCT_MESSAGE, payload: false});
-       }
+      }
     }).catch(function(err) {
 
-      console.log(err);
+      console.log(err);// eslint-disable-line
     });
   };
 }
@@ -72,14 +72,14 @@ export function productPageCount() {
   return {
     type: action.COUNT_PRODUCT_PAGES,
     payload: 1
-  }
+  };
 }
 
 export function zeroProductPageCount() {
 
   return {
     type: action.ZERO_PRODUCT_PAGES_COUNT
-  }
+  };
 }
 
 export function gridSwitcher(newClasses) {
@@ -89,5 +89,5 @@ export function gridSwitcher(newClasses) {
     payload: {
       newClasses
     }
-  }
+  };
 }

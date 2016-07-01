@@ -4,30 +4,30 @@ const productsReducer = (state=[], action) => {
 
   switch(action.type) {
 
-    case ADD_PRODUCTS: {
+  case ADD_PRODUCTS: {
 
-      state = state.concat(action.payload);
-      return state;
-    }
+    state = state.concat(action.payload);
+    return state;
+  }
 
-    case RESET_PRODUCT_LIST: {
-      state = [];
-      return state;
-    }
+  case RESET_PRODUCT_LIST: {
+    state = [];
+    return state;
+  }
 
-    case CREATE_PRODUCT: {
+  case CREATE_PRODUCT: {
 
-      state = state.concat(action.payload);
-      return state;
-    }
+    state = state.concat(action.payload);
+    return state;
+  }
 
-    case FETCH_PRODUCTS: {
+  case FETCH_PRODUCTS: {
 
-      state = action.payload;
-      return state;
-    }
+    state = action.payload;
+    return state;
+  }
 
-    default:
+  default:
     return state;
   }
 };

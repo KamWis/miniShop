@@ -9,7 +9,7 @@ function mapStateToProps(state) {
     gridClasses: state.gridClasses,
     pageCount: state.pageCount,
     productsAvailable: state.productsAvailable
-  }
+  };
 }
 
 function mapDispatchToProps(dispatch){

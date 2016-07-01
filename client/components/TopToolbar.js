@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import { Col } from 'react-bootstrap';
 import SortBy from './SortBy';
 import GridSwitcher from './GridSwitcher';
@@ -13,7 +13,7 @@ export default class TopToolbar extends React.Component {
 
     this.state = {
       fetchOryginal: false
-    }
+    };
   }
 
   searchHelper() {
@@ -27,7 +27,7 @@ export default class TopToolbar extends React.Component {
 
       this.setState({
         fetchOryginal: true
-      })
+      });
     }
 
     if(inputValue.length < 3 && this.state.fetchOryginal) {
@@ -37,7 +37,7 @@ export default class TopToolbar extends React.Component {
 
       this.setState({
         fetchOryginal: false
-      })
+      });
     }
   }
 
@@ -58,6 +58,6 @@ export default class TopToolbar extends React.Component {
           <GridSwitcher gridSwitcher={this.props.gridSwitcher} />
         </Col>
       </Col>
-    )
+    );
   }
-};
+}

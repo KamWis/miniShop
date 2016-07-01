@@ -1,5 +1,4 @@
-import React from "react";
-import * as miniShopActions from '../actions/index';
+import React from 'react';
 
 export default class AddNewProduct extends React.Component {
 
@@ -9,23 +8,23 @@ export default class AddNewProduct extends React.Component {
     this.state = {
       prodNameValid: 'has-info',
       prodPriceValid: 'has-info',
-      inputContainerCass: "form-group label-floating"
+      inputContainerCass: 'form-group label-floating'
     };
   }
 
   componentDidMount() {
 
-    $.material.init();
+    $.material.init(); // eslint-disable-line
   }
 
   createProduct() {
 
     const prodNInput = this.refs.prodName,
-          prodPInput = this.refs.prodPrice,
-          productName = prodNInput.value,
-          productPrice = prodPInput.value,
-          productDate = Date.now(),
-          productLink = 'http://thecatapi.com/api/images/get?format=src&type=jpg&category=space'
+      prodPInput = this.refs.prodPrice,
+      productName = prodNInput.value,
+      productPrice = prodPInput.value,
+      productDate = Date.now(),
+      productLink = 'http://thecatapi.com/api/images/get?format=src&type=jpg&category=space';
 
     this.setState({
       prodNameValid: 'has-info',
@@ -47,7 +46,7 @@ export default class AddNewProduct extends React.Component {
 
   fieldsValidation(inputs) {
     const namePatern = /^[A-Za-z0-9_. ]+$/,
-    pricePatern = /^[1-9]\d*(((,\d{0,2}){1})?(\.\d{0,2})?)$/;
+      pricePatern = /^[1-9]\d*(((,\d{0,2}){1})?(\.\d{0,2})?)$/;
     let valid = true;
 
     if(!namePatern.test(inputs.productName)) {
@@ -71,7 +70,7 @@ export default class AddNewProduct extends React.Component {
     return valid;
   }
 
-  resetOnChange(e) {
+  resetOnChange() {
     if(this.state.prodNameValid === 'has-error') {
 
       this.setState({
@@ -97,17 +96,17 @@ export default class AddNewProduct extends React.Component {
         <div className={this.state.inputContainerCass + ' ' + this.state.prodNameValid}>
           <label for="product_name" className="control-label">Product name:</label>
           <input ref="prodName" className="form-control" id="product_name" onKeyUp={this.resetOnChange.bind(this)} />
-          <span className={this.state.prodNameValid === 'has-error' ? "error-block text-danger" : 'hidden'}>This field is invalid.</span>
+          <span className={this.state.prodNameValid === 'has-error' ? 'error-block text-danger' : 'hidden'}>This field is invalid.</span>
         </div>
 
         <div className={this.state.inputContainerCass + ' ' + this.state.prodPriceValid}>
           <label for="product_price" className="control-label">Product price:</label>
           <input ref="prodPrice" className="form-control" id="product_price" onKeyUp={this.resetOnChange.bind(this)} />
-          <span className={this.state.prodPriceValid  === 'has-error' ? "error-block text-danger" : 'hidden'}>This field is invalid.</span>
+          <span className={this.state.prodPriceValid  === 'has-error' ? 'error-block text-danger' : 'hidden'}>This field is invalid.</span>
         </div>
 
         <button className="btn btn-info btn-raised" onClick={this.createProduct.bind(this)}>Create Product!</button>
       </div>
-    )
+    );
   }
 }

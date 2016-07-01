@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 import TopToolbar from 'components/TopToolbar';
 import ProductList from 'components/ProductList';
 import {store} from '../stores/miniShopStore';
-import {fetchProducts, zeroProductPageCount, resetProductList} from '../actions/index';
+import {fetchProducts, zeroProductPageCount} from '../actions/index';
 import throttle from 'lodash.throttle';
 
 export default class Index extends React.Component {
@@ -22,7 +22,7 @@ export default class Index extends React.Component {
 
   componentDidMount() {
 
-    $.material.init();
+    $.material.init();// eslint-disable-line
     window.addEventListener('scroll', this.beforeScrollEvent);
   }
 
@@ -52,6 +52,6 @@ export default class Index extends React.Component {
         <TopToolbar gridClasses={this.props.gridClasses} gridSwitcher={this.props.gridSwitcher} />
         <ProductList />
       </div>
-    )
+    );
   }
 }

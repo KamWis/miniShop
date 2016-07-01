@@ -65,8 +65,12 @@ module.exports = {
   module: {
     loaders: [{
       test: /\.js$/,
-      exclude: /node_modules/,
-      loaders: ['react-hot', 'babel']
+      exclude: [
+        /node_modules/,
+        /ripples.min.js/,
+        /material.min.js/
+        ],
+      loaders: ['react-hot', 'babel', 'eslint-loader']
     },
     {
       test: /\.css$/,

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react';// eslint-disable-line
 import ReactDOM from 'react-dom';
 import {Router, Route, IndexRoute} from 'react-router';
 import {Provider} from 'react-redux';
