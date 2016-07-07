@@ -4,6 +4,10 @@ import {Grid} from 'react-bootstrap';
 
 export default class Container extends React.Component {
 
+  constructor() {
+    super();
+  }
+
   render() {
 
     const {

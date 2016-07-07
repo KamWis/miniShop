@@ -1,6 +1,6 @@
 import React from 'react';
-import TopToolbar from 'components/TopToolbar';
-import ProductList from 'components/ProductList';
+import TopToolbar from '../components/TopToolbar';
+import ProductList from '../components/ProductList';
 import {store} from '../stores/miniShopStore';
 import {fetchProducts, zeroProductPageCount} from '../actions/index';
 import throttle from 'lodash.throttle';

@@ -3,4 +3,5 @@
 .DS_Store
 blog.md
 node_modules/
+coverage
 npm-debug.log

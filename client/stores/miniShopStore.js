@@ -15,7 +15,13 @@ const reducers = combineReducers({
   routing: routerReducer
 });
 
-const store = createStore(reducers, compose(applyMiddleware(thunk),  window.devToolsExtension && window.devToolsExtension()));
+
+const finalCreateStore = compose(
+  applyMiddleware(thunk)
+  // window.devToolsExtension && window.devToolsExtension()
+)(createStore);
+
+const store = finalCreateStore(reducers);
 
 const history = syncHistoryWithStore(browserHistory, store);
 

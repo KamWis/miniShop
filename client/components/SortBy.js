@@ -21,10 +21,10 @@ export default class SortBy extends React.Component {
       <div className="pull-right">
         <span className="sort--aligment">Sort by:</span>
         <DropdownButton bsStyle="default" className="btn btn-raised" title="Select" id="nav-dropdown">
-          <MenuItem onClick={this.handleClick.bind(this, 'price')}>Price Asc.</MenuItem>
-          <MenuItem onClick={this.handleClick.bind(this, '-price')}>Price Desc.</MenuItem>
-          <MenuItem onClick={this.handleClick.bind(this, 'postDate')}>Date Asc.</MenuItem>
-          <MenuItem onClick={this.handleClick.bind(this, '-postDate')}>Date Desc.</MenuItem>
+          <MenuItem onClick={() => {this.handleClick('price');}}>Price Asc.</MenuItem>
+          <MenuItem onClick={() => {this.handleClick('-price');}}>Price Desc.</MenuItem>
+          <MenuItem onClick={() => {this.handleClick('postDate');}}>Date Asc.</MenuItem>
+          <MenuItem onClick={() => {this.handleClick('-postDate');}}>Date Desc.</MenuItem>
         </DropdownButton>
       </div>
     );
