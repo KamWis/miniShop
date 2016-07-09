@@ -7,6 +7,9 @@ import {store} from '../stores/miniShopStore';
 let component;
 
 let props = {
+  productsAvailable: {
+    show: false
+  },
   gridClasses: {
     grid: 'width100',
     gridImage: 'width100',
@@ -50,6 +53,9 @@ describe('ProductList', () => {
 
 
     let props = {
+      productsAvailable: {
+        show: false
+      },
       gridClasses: {
         grid: 'width100',
         gridImage: 'width100',
@@ -95,6 +101,9 @@ describe('ProductList', () => {
   it('should render 4 products', () => {
 
     let props = {
+      productsAvailable: {
+        show: false
+      },
       gridClasses: {
         grid: 'width100',
         gridImage: 'width100',
@@ -144,7 +153,9 @@ describe('ProductList', () => {
   it('should hide message if there are products', () => {
 
     let props = {
-      productsAvailable: true,
+      productsAvailable: {
+        show: true
+      },
       gridClasses: {
         grid: 'width100',
         gridImage: 'width100',
@@ -155,7 +166,7 @@ describe('ProductList', () => {
     component = TestUtils.renderIntoDocument(<ProductList {...props} />);
 
         const message = TestUtils.findRenderedDOMComponentWithClass(
-          component, 'hidden'
+          component, 'prod-message'
         )
 
         expect(message).toExist();
@@ -164,7 +175,9 @@ describe('ProductList', () => {
   it('should show message if there is no product', () => {
 
     let props = {
-      productsAvailable: false,
+      productsAvailable: {
+        show: false
+      },
       gridClasses: {
         grid: 'width100',
         gridImage: 'width100',
@@ -175,7 +188,7 @@ describe('ProductList', () => {
     component = TestUtils.renderIntoDocument(<ProductList {...props} />);
 
         const message = TestUtils.scryRenderedDOMComponentsWithClass(
-          component, 'hidden'
+          component, 'prod-message'
         )
 
         expect(message.length).toEqual(0);

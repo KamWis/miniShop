@@ -112,13 +112,13 @@ export default class AddNewProduct extends React.Component {
         <h1 className="text-info center">ADD NEW PRODUCT!</h1>
 
         <div className={this.state.inputContainerCass + ' ' + this.state.prodNameValid}>
-          <label for="product_name" className="control-label">Product name:</label>
+          <label htmlFor="product_name" className="control-label">Product name:</label>
           <input ref="prodName" className="form-control" id="product_name" onKeyUp={this.resetOnChange.bind(this)} />
           <span className={this.state.prodNameValid === 'has-error' ? 'error-block text-danger' : 'hidden'}>This field is invalid.</span>
         </div>
 
         <div className={this.state.inputContainerCass + ' ' + this.state.prodPriceValid}>
-          <label for="product_price" className="control-label">Product price:</label>
+          <label htmlFor="product_price" className="control-label">Product price:</label>
           <input ref="prodPrice" className="form-control" id="product_price" onKeyUp={this.resetOnChange.bind(this)} />
           <span className={this.state.prodPriceValid  === 'has-error' ? 'error-block text-danger' : 'hidden'}>This field is invalid.</span>
         </div>

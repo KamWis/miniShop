@@ -1,5 +1,6 @@
 var http       = require('http');
 var express    = require('express');
+var path       = require('path');
 var app        = express();
 var router     = express.Router();
 var server     = http.Server(app);
@@ -79,6 +80,10 @@ router.get('/api/Product', function(req, res) {
 // RUN SERVER - PORT WILL BE FROM ABOVE port VARIABLE
 
 app.use(express.static(staticPath), router);
+
+app.get('*', function (request, response){
+  response.sendFile(path.resolve('public/build', 'index.html'));
+});
 
 server.listen(3000, '0.0.0.0', function onStart(err) {
   if (err) {

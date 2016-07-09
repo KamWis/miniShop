@@ -28,7 +28,7 @@ export class ProductList extends React.Component {
                         date={product.postDate}
                       />;
             })}
-            <Col sm={12} className={this.props.productsAvailable.show ? 'hidden' : '' } >
+            <Col sm={12} className={this.props.productsAvailable.show ? 'hidden prod-message' : '' } >
               {this.props.productsAvailable.message}
             </Col>
             <Col sm={12} className={this.props.activeSpinner ? 'show' : 'hidden'} >
