@@ -15,10 +15,9 @@ web:
         echo node_modules_exists &&
         npm rebuild node-sass;
       else
-        cp -a /tmp/node_modules /usr/src/app &&
         npm install;
       fi &&
-
+      webpack &&
       /usr/local/bin/node ./server/server.js;
     '
 db:
