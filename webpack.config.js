@@ -35,7 +35,7 @@ if(isDeveloping) {
   ];
 
   config.sassLoader = {
-      test: /\.sass$/,
+      test: /\.scss$/,
       loaders: ['style-loader', 'css-loader', 'sass-loader']
     }
 } else {
@@ -43,7 +43,7 @@ if(isDeveloping) {
   appEntry = path.resolve(__dirname, './client/index.js');
 
   config.sassLoader = {
-      test: /\.sass$/,
+      test: /\.scss$/,
       loader: ExtractTextPlugin.extract('style-loader', 'css-loader!sass-loader')
     }
   config.ExtractTextPlugin = new ExtractTextPlugin('style.css', {allChunks: true});

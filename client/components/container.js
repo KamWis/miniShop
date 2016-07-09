@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './header';
 import {Grid} from 'react-bootstrap';
+import ConnectionDialog from './ConnectionDialog';
 
 export default class Container extends React.Component {
 
@@ -23,6 +24,8 @@ export default class Container extends React.Component {
         <Header />
 
         {React.cloneElement(this.props.children, {createProduct, gridClasses, gridSwitcher, pageCount, productsAvailable})}
+
+        <ConnectionDialog />
       </Grid>
     );
   }

@@ -6,6 +6,7 @@ import {browserHistory} from 'react-router';
 import * as reducer from '../reducers';
 
 const reducers = combineReducers({
+  activeSpinner: reducer.activeSpinnerReducer,
   products: reducer.productsReducer,
   gridClasses: reducer.gridClassesReducer,
   productsAvailable: reducer.productsAvailableReducer,

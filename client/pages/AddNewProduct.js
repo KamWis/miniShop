@@ -58,7 +58,25 @@ export default class AddNewProduct extends React.Component {
       valid = false;
     }
 
+    if(inputs.productName.length > 35) {
+
+      this.setState({
+        prodNameValid: 'has-error'
+      });
+
+      valid = false;
+    }
+
     if(!pricePatern.test(inputs.productPrice)) {
+
+      this.setState({
+        prodPriceValid: 'has-error'
+      });
+
+      valid = false;
+    }
+
+    if(inputs.productPrice.length > 5) {
 
       this.setState({
         prodPriceValid: 'has-error'

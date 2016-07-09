@@ -13,12 +13,11 @@ const gridClassesReducer = (state=gridClasses, action) => {
   case SWITCH_GRID: {
 
     state = action.payload.newClasses;
-    return state;
+    break;
+  }
   }
 
-  default:
-    return state;
-  }
+  return state;
 };
 
 export default gridClassesReducer;

@@ -22,7 +22,7 @@ export default class ProductTile extends React.Component {
         <div className={classes.grid + ' product_data_row'}>
           <Col xs={9}>
             <div className="width100 large_title">
-              <h3 className="text-info">{this.props.productName}</h3>
+              <h4 className="text-info">{this.props.productName}</h4>
             </div>
             <div className="width100">
 

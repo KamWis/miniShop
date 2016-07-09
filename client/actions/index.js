@@ -33,7 +33,11 @@ export function fetchProducts(queryString='', pageNumber=1, order='name', resetL
 
   return (dispatch) => {
 
+    dispatch({type: action.ACTIVE_SPINNER, payload: true});
+
     request.then(({data}) => {
+
+      dispatch({type: action.ACTIVE_SPINNER, payload: false});
 
       if(typeof data === 'object') {
 
@@ -59,9 +63,18 @@ export function fetchProducts(queryString='', pageNumber=1, order='name', resetL
         }
 
         dispatch({type: action.SHOW_NO_PRODUCT_MESSAGE, payload: false});
+
+        if(queryString.length >= 3) {
+
+          dispatch({type: action.CHANGE_NO_PRODUCT_MESSAGE, payload: 'No products matching your criteria...'});
+        } else {
+
+          dispatch({type: action.CHANGE_NO_PRODUCT_MESSAGE, payload: 'No more products to load...'});
+        }
       }
     }).catch(function(err) {
 
+      dispatch({type: action.ACTIVE_SPINNER, payload: false});
       console.log(err);// eslint-disable-line
     });
   };

@@ -1,4 +1,4 @@
-import { ADD_PRODUCTS, RESET_PRODUCT_LIST, CREATE_PRODUCT, FETCH_PRODUCTS } from '../constants';
+import { ADD_PRODUCTS, RESET_PRODUCT_LIST, FETCH_PRODUCTS } from '../constants';
 
 const productsReducer = (state=[], action) => {
 
@@ -7,29 +7,22 @@ const productsReducer = (state=[], action) => {
   case ADD_PRODUCTS: {
 
     state = state.concat(action.payload);
-    return state;
+    break;
   }
 
   case RESET_PRODUCT_LIST: {
     state = [];
-    return state;
-  }
-
-  case CREATE_PRODUCT: {
-
-    state = state.concat(action.payload);
-    return state;
+    break;
   }
 
   case FETCH_PRODUCTS: {
 
     state = action.payload;
-    return state;
+    break;
+  }
   }
 
-  default:
-    return state;
-  }
+  return state;
 };
 
 export default productsReducer;

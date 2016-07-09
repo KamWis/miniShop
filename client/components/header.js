@@ -16,7 +16,7 @@ export default class Header extends React.Component {
         </Col>
         <Col sm={6}>
           <Link to="AddNewProduct">
-            <Button bsStyle="info" bsSize="large" className="pull-right btn-raised">Add new product</Button>
+            <Button bsStyle="info" bsSize="large" className="pull-right btn-raised add-new-product-btn">Add new product</Button>
           </Link>
         </Col>
       </header>

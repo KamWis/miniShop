@@ -1,6 +1,9 @@
+var http       = require('http');
 var express    = require('express');
 var app        = express();
 var router     = express.Router();
+var server     = http.Server(app);
+var io         = require('socket.io')(server);
 var port       = process.env.PORT || 3000;
 var bodyParser = require('body-parser');
 var bookshelf  = require("./bookshelf");
@@ -77,9 +80,20 @@ router.get('/api/Product', function(req, res) {
 
 app.use(express.static(staticPath), router);
 
-app.listen(3000, '0.0.0.0', function onStart(err) {
+server.listen(3000, '0.0.0.0', function onStart(err) {
   if (err) {
     console.log(err);
   }
   console.info('==> 🌎 port: %s.', port);
+});
+
+
+io.on('disconnect', function (socket) {
+
+  socket.emit('You have been disconnected from the server.');
+});
+
+io.on('connection', function (socket) {
+
+  socket.emit('connectedToServer');
 });

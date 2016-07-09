@@ -11,9 +11,10 @@ import {store, history} from './stores/miniShopStore';
 import '../public/build/js/material.min.js';
 import '../public/build/js/ripples.min.js';
 
+
 import '../node_modules/bootstrap-material-design/dist/css/bootstrap-material-design.min.css';
 import '../node_modules/bootstrap-material-design/dist/css/ripples.min.css';
-import './stylesheets/style.sass';
+import './stylesheets/style.scss';
 
 
 

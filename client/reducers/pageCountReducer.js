@@ -4,15 +4,15 @@ const pageCountReducer = (state=1, action) => {
   switch(action.type) {
   case COUNT_PRODUCT_PAGES: {
     state = state + action.payload;
-    return state;
+    break;
   }
   case ZERO_PRODUCT_PAGES_COUNT: {
     state = 1;
-    return state;
+    break;
   }
-  default:
-    return state;
   }
+
+  return state;
 };
 
 export default pageCountReducer;

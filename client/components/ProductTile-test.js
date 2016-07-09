@@ -41,10 +41,10 @@ describe('ProductTile', () => {
     expect(hasClass).toExist;
   });
 
-  it('should have h3 with text "test"', () => {
+  it('should have h4 with text "test"', () => {
 
     const headerText = TestUtils.findRenderedDOMComponentWithTag(
-      component, 'h3'
+      component, 'h4'
     )
 
     expect(headerText.textContent).toEqual('test');

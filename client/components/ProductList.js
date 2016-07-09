@@ -28,8 +28,16 @@ export class ProductList extends React.Component {
                         date={product.postDate}
                       />;
             })}
-            <Col sm={12} className={this.props.productsAvailable ? 'hidden' : '' } >
-              There is no more product to load...
+            <Col sm={12} className={this.props.productsAvailable.show ? 'hidden' : '' } >
+              {this.props.productsAvailable.message}
+            </Col>
+            <Col sm={12} className={this.props.activeSpinner ? 'show' : 'hidden'} >
+
+              <div className="loader">
+                <svg className="circular">
+                  <circle className="path" cx="50" cy="50" r="20" fill="none" strokeWidth="2" strokeMiterlimit="10"/>
+                </svg>
+              </div>
             </Col>
           </Row>
         </Col>
@@ -42,7 +50,8 @@ function mapStateToProps(state) {
   return {
     productList: state.products,
     productsAvailable: state.productsAvailable,
-    gridClasses: state.gridClasses
+    gridClasses: state.gridClasses,
+    activeSpinner: state.activeSpinner
   };
 }
 

@@ -5,11 +5,11 @@ const sortOrderReducer = (state='name', action) => {
   case SORT_PRODUCTS: {
 
     state = action.payload;
-    return state;
+    break;
   }
-  default:
-    return state;
   }
+
+  return state;
 };
 
 

@@ -5,11 +5,11 @@ const queryStringReducer = (state='', action) => {
   case QUERY_STRING: {
 
     state = action.payload;
-    return state;
+    break;
   }
-  default:
-    return state;
   }
+
+  return state;
 };
 
 export default queryStringReducer;

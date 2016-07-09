@@ -50,11 +50,11 @@ export default class TopToolbar extends React.Component {
           <input className="input-top_search" ref="searchInput" type="text" onChange={this.searchHelper.bind(this)} placeholder="Search for product..." />
         </Col>
 
-        <Col sm={4} className="pull-left">
+        <Col sm={4} xs={8} className="pull-left sort-by-section">
 
           <SortBy />
         </Col>
-        <Col sm={2} className="pull-left">
+        <Col sm={2} xs={4} className="pull-left">
           <GridSwitcher gridSwitcher={this.props.gridSwitcher} />
         </Col>
       </Col>

@@ -1,14 +1,19 @@
-import { SHOW_NO_PRODUCT_MESSAGE } from '../constants';
+import { SHOW_NO_PRODUCT_MESSAGE, CHANGE_NO_PRODUCT_MESSAGE } from '../constants';
 
-const productsAvailableReducer = (state=true, action) => {
+const productsAvailableReducer = (state={}, action) => {
   switch(action.type) {
   case SHOW_NO_PRODUCT_MESSAGE: {
-    state = action.payload;
-    return state;
+
+    state = {...state, show: action.payload};
+    break;
   }
-  default:
-    return state;
+  case CHANGE_NO_PRODUCT_MESSAGE: {
+
+    state = {...state, message: action.payload};
+    break;
   }
+  }
+  return state;
 };
 
 export default productsAvailableReducer;
