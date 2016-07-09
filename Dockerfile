@@ -1,5 +1,4 @@
-FROM node:0.12.7
-MAINTAINER tribou
+FROM node:argon
 
 RUN npm install webpack -g
 RUN npm install knex -g
@@ -15,9 +14,9 @@ RUN cp -a /tmp/node_modules /usr/src/app/
 
 RUN webpack
 
-ENV NODE_ENV=production
-ENV PORT=4000
+ENV NODE_ENV=dev
+ENV PORT=3000
 
 CMD [ "/usr/local/bin/node", "./server/server.js" ]
 
-EXPOSE 4000
+EXPOSE 3000
