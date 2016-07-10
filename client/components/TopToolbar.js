@@ -47,7 +47,7 @@ export default class TopToolbar extends React.Component {
       <Col sm={12} className="top-margin-40 nav-bar-top">
         <Col sm={6}>
 
-          <input className="input-top_search" ref="searchInput" type="text" onChange={this.searchHelper.bind(this)} placeholder="Search for product..." />
+          <input className="input-top_search" ref="searchInput" type="text" onChange={() => {this.searchHelper();}} placeholder="Search for product..." />
         </Col>
 
         <Col sm={4} xs={8} className="pull-left sort-by-section">
