@@ -11,33 +11,33 @@ var bookshelf  = require("./bookshelf");
 var Product    = require("./models");
 var staticPath = 'public/build';
 
+var isDeveloping = process.env.NODE_ENV !== 'production';
+
 
 // DEV MIDDLEWARE FOR HOT RELOAD - ALTERNATIVE: CORS
 
-// MAKE IT CONDITIONAL
+if(isDeveloping) {
 
-var webpackDevMiddleware = require("webpack-dev-middleware");
-var webpack = require("webpack");
-var webpackConfig = require("../webpack.config");
+  var webpackDevMiddleware = require("webpack-dev-middleware");
+  var webpack = require("webpack");
+  var webpackConfig = require("../webpack.config");
 
-var compiler = webpack(webpackConfig);
+  var compiler = webpack(webpackConfig);
 
-app.use(webpackDevMiddleware(compiler, {
+  app.use(webpackDevMiddleware(compiler, {
 
-    publicPath: webpackConfig.output.publicPath,
-    watchOptions: {
-      aggregateTimeout: 300,
-      poll: true
-    }
-}));
+      publicPath: webpackConfig.output.publicPath,
+      watchOptions: {
+        aggregateTimeout: 300,
+        poll: true
+      }
+  }));
 
-app.use(require("webpack-hot-middleware")(compiler, {
+  app.use(require("webpack-hot-middleware")(compiler, {
 
-    log: console.log, path: '/__webpack_hmr'
-}));
-
-/////////////////////////////////////////////////////
-
+      log: console.log, path: '/__webpack_hmr'
+  }));
+}
 
 bookshelf.plugin('pagination');
 

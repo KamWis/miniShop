@@ -1,6 +1,5 @@
 var path = require('path');
 var webpack = require('webpack');
-var autoprefixer = require('autoprefixer');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -14,7 +13,8 @@ var htmlWebpackPlugin = new HtmlWebpackPlugin(
 
 var extractCSS = new ExtractTextPlugin('css/[name].css', {allChunks: true});
 var isDeveloping = process.env.NODE_ENV !== 'production';
-var appEntry;
+var appEntry = [path.resolve(__dirname, './client/index.js')];
+var devServer;
 
 var config = {
 
@@ -29,18 +29,17 @@ var config = {
 
 if(isDeveloping) {
 
-  appEntry = [
-    'webpack-hot-middleware/client?reload=true',
-    path.resolve(__dirname, './client/index.js')
-  ];
+  appEntry.push(
+    'webpack-hot-middleware/client?reload=true'
+  );
+
+  devServer = {hot: true, inline: true};
 
   config.sassLoader = {
       test: /\.scss$/,
       loaders: ['style-loader', 'css-loader', 'sass-loader']
     }
 } else {
-
-  appEntry = path.resolve(__dirname, './client/index.js');
 
   config.sassLoader = {
       test: /\.scss$/,
@@ -51,10 +50,7 @@ if(isDeveloping) {
 }
 
 module.exports = {
-   devServer: {
-    hot: true,
-    inline: true
-  },
+  devServer: devServer,
   devtool: "eval",
   entry: appEntry,
   output: {

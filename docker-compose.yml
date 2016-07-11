@@ -7,7 +7,7 @@ web:
   links:
     - db
   environment:
-    - NODE_ENV=dev
+    - NODE_ENV=production
   command: >
     sh -c '
       if test -d node_modules;
@@ -17,7 +17,6 @@ web:
       else
         npm install;
       fi &&
-      webpack &&
       /usr/local/bin/node ./server/server.js;
     '
 db:
