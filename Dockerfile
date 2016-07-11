@@ -11,6 +11,6 @@ COPY . /usr/src/app/
 ENV NODE_ENV=production
 ENV PORT=3000
 
-RUN webpack
+CMD webpack
 
 EXPOSE 3000
