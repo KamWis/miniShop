@@ -1,7 +1,7 @@
-import React from 'react';// eslint-disable-line
+import React from 'react';
 import {Modal} from 'react-bootstrap';
-
-const socket = io.connect();// eslint-disable-line
+import io from 'socket.io-client';
+const socket = io.connect();
 
 export default class ConnectionDialog extends React.Component {
 

@@ -55,7 +55,7 @@ export default class TopToolbar extends React.Component {
           <SortBy />
         </Col>
         <Col sm={2} xs={4} className="pull-left">
-          <GridSwitcher gridSwitcher={this.props.gridSwitcher} />
+          <GridSwitcher />
         </Col>
       </Col>
     );

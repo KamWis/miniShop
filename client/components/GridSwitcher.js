@@ -1,7 +1,8 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import {store} from '../stores/miniShopStore';
+import {gridSwitcher} from '../actions';
 
-class GridSwitcher extends React.Component {
+export default class GridSwitcher extends React.Component {
 
   constructor() {
     super();
@@ -33,10 +34,10 @@ class GridSwitcher extends React.Component {
 
       if(Object.keys(newClasses).length != 0 && newClasses.constructor === Object) {
 
-        this.props.gridSwitcher(newClasses);
+        store.dispatch(gridSwitcher(newClasses));
       } else {
 
-        return;
+        return false;
       }
     }
   }
@@ -45,17 +46,9 @@ class GridSwitcher extends React.Component {
 
     return (
       <div className="pull-right">
-        <i className="material-icons grid-icons" onClick={this.switchClasses.bind(this, 'list')}>view_list</i>
-        <i className="material-icons grid-icons" onClick={this.switchClasses.bind(this, 'grid')}>view_module</i>
+        <i className="view_list material-icons grid-icons" onClick={() => {this.switchClasses('list');}}>view_list</i>
+        <i className="view_grid material-icons grid-icons" onClick={() => {this.switchClasses('grid');}}>view_module</i>
       </div>
     );
   }
 }
-
-function mapStateToProps(state) {
-  return {
-    gridClasses: state.gridClasses
-  };
-}
-
-export default connect(mapStateToProps)(GridSwitcher);

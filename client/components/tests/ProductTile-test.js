@@ -1,7 +1,7 @@
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
 import expect from 'expect';
-import ProductTile from './ProductTile';
+import ProductTile from '../ProductTile';
 
 let component;
 

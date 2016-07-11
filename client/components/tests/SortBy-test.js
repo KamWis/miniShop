@@ -1,8 +1,7 @@
 import React from 'react';
 import TestUtils from 'react/lib/ReactTestUtils';
 import expect from 'expect';
-import SortBy from './SortBy';
-import { MenuItem } from 'react-bootstrap';
+import SortBy from '../SortBy';
 
 describe('sortBy', function () {
 
